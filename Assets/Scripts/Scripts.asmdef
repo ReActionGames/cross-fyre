@@ -1,0 +1,22 @@
+{
+    "name": "GameAssemby",
+    "references": [
+        "GUID:c3031e5a86d071645a72d196b3638892",
+        "GUID:b6af38f92725e7b418ec2b10ec570982",
+        "GUID:072f06bb0adbed846adeabaa037f1546",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Sirenix.OdinInspector.Attributes.dll",
+        "Sirenix.Serialization.dll",
+        "DOTween.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
