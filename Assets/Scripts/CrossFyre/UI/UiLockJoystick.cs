@@ -6,18 +6,26 @@ namespace CrossFyre.UI
 {
     public class UiLockJoystick : MonoBehaviour
     {
-        public static event Action<bool> LockJoystickChanged;
-
         [SerializeField] private Toggle toggle;
 
-        private void Start()
+        private void OnEnable()
         {
-            LockJoystickChanged?.Invoke(toggle.isOn);
+            GameSettings.SettingsChanged += OnSettingsChanged;
+        }
+
+        private void OnDisable()
+        {
+            GameSettings.SettingsChanged -= OnSettingsChanged;
+        }
+
+        private void OnSettingsChanged(Settings settings)
+        {
+            toggle.SetIsOnWithoutNotify(settings.lockJoystick);
         }
 
         public void OnToggled(bool value)
         {
-            LockJoystickChanged?.Invoke(value);
+            GameSettings.ChangeSettings(lockJoystick: toggle);
         }
     }
 }

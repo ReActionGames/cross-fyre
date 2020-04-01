@@ -22,17 +22,19 @@ namespace CrossFyre.GameInput
 
         private void OnEnable()
         {
-            UiLockJoystick.LockJoystickChanged += OnLockJoystickChanged;
+            // UiLockJoystick.LockJoystickChanged += OnLockJoystickChanged;
+            GameSettings.SettingsChanged += OnLockJoystickChanged;
         }
 
         private void OnDisable()
         {
-            UiLockJoystick.LockJoystickChanged -= OnLockJoystickChanged;
+            // UiLockJoystick.LockJoystickChanged -= OnLockJoystickChanged;
+            GameSettings.SettingsChanged -= OnLockJoystickChanged;
         }
 
-        private void OnLockJoystickChanged(bool value)
+        private void OnLockJoystickChanged(Settings settings)
         {
-            lockJoystick = value;
+            lockJoystick = settings.lockJoystick;
         }
 
         public void Init(UiControlPanel controlPanel)

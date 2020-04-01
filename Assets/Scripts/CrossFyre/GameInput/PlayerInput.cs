@@ -9,9 +9,6 @@ namespace CrossFyre.GameInput
     {
         public static event Action<InputData> InputChanged;
 
-        // [SerializeField] private bool debugMode = false;
-        // [SerializeField] private bool isMobileOverride = false;
-
         private Dictionary<Type, IInputProvider> inputProviders;
         private IInputProvider currentInputProvider;
 

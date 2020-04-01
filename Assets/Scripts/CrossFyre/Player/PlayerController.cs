@@ -52,9 +52,6 @@ namespace CrossFyre.Player
         {
             var input = data.input;
             maxSpeed = data.state == InputState.Sprint ? fastSpeed : slowSpeed;
-            Debug.Log(data.state);
-            // maxSpeed = fastSpeed;
-            // if (input.magnitude < 1f) maxSpeed = slowSpeed;
             inputCache += input;
         }
 
