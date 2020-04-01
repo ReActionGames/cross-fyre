@@ -25,7 +25,7 @@ namespace CrossFyre.UI
 
         public void OnToggled(bool value)
         {
-            GameSettingsManager.ChangeSettings(lockJoystick: toggle);
+            GameSettingsManager.ChangeSettings(this, lockJoystick: value);
         }
     }
 }

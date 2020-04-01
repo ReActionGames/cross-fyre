@@ -325,8 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d636e595a8aeb304ca5e4a1304e6e070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSettings:
-    lockJoystick: 0
+  settingsObject: {fileID: 11400000, guid: 778199995d502a142a7e41101609b2ba, type: 2}
 --- !u!4 &206047241
 Transform:
   m_ObjectHideFlags: 0

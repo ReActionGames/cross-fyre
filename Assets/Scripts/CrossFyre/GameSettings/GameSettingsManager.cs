@@ -1,4 +1,5 @@
 ﻿using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace CrossFyre.GameSettings
@@ -15,7 +16,8 @@ namespace CrossFyre.GameSettings
             set => _instance.settingsObject.settings = value;
         }
 
-        [SerializeField] private GameSettingsObject settingsObject;
+        [InlineEditor(Expanded = true, DrawHeader = false), Space] [SerializeField]
+        private GameSettingsObject settingsObject;
 
         private void Awake()
         {
@@ -33,22 +35,35 @@ namespace CrossFyre.GameSettings
             SettingsChanged?.Invoke(Settings);
         }
 
-
-        public static void ChangeSettings(Settings settings)
+        // Called by Odin Button
+        // ReSharper disable once UnusedMember.Local
+        [Button(ButtonSizes.Gigantic, Name = "Update Settings"), PropertyOrder(-1)]
+        private void NotifySettingsChanged()
         {
+            SettingsChanged?.Invoke(Settings);
+        }
+
+        public static void ChangeSettings(object caller, Settings settings)
+        {
+            if (Settings.debugMode)
+            {
+                Debug.Log("Settings: Called by " + caller.GetType() + ";\nOld Settings: " + Settings + ";\nNew Settings: " + settings);
+            }
+            
             Settings = settings;
 
             SettingsChanged?.Invoke(Settings);
         }
 
-        public static void ChangeSettings(bool? lockJoystick = null)
+        public static void ChangeSettings(object caller, bool? debugMode = null, bool? lockJoystick = null)
         {
             var newSettings = new Settings
             {
+                debugMode = debugMode ?? Settings.debugMode,
                 lockJoystick = lockJoystick ?? Settings.lockJoystick
             };
 
-            ChangeSettings(newSettings);
+            ChangeSettings(caller, newSettings);
         }
     }
 }
