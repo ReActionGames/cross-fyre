@@ -1,4 +1,4 @@
-﻿using System;
+﻿using CrossFyre.GameSettings;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,12 +10,12 @@ namespace CrossFyre.UI
 
         private void OnEnable()
         {
-            GameSettings.SettingsChanged += OnSettingsChanged;
+            GameSettingsManager.SettingsChanged += OnSettingsChanged;
         }
 
         private void OnDisable()
         {
-            GameSettings.SettingsChanged -= OnSettingsChanged;
+            GameSettingsManager.SettingsChanged -= OnSettingsChanged;
         }
 
         private void OnSettingsChanged(Settings settings)
@@ -25,7 +25,7 @@ namespace CrossFyre.UI
 
         public void OnToggled(bool value)
         {
-            GameSettings.ChangeSettings(lockJoystick: toggle);
+            GameSettingsManager.ChangeSettings(lockJoystick: toggle);
         }
     }
 }

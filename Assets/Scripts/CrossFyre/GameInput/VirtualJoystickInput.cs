@@ -1,4 +1,5 @@
 ﻿using System;
+using CrossFyre.GameSettings;
 using CrossFyre.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -23,13 +24,13 @@ namespace CrossFyre.GameInput
         private void OnEnable()
         {
             // UiLockJoystick.LockJoystickChanged += OnLockJoystickChanged;
-            GameSettings.SettingsChanged += OnLockJoystickChanged;
+            GameSettings.GameSettingsManager.SettingsChanged += OnLockJoystickChanged;
         }
 
         private void OnDisable()
         {
             // UiLockJoystick.LockJoystickChanged -= OnLockJoystickChanged;
-            GameSettings.SettingsChanged -= OnLockJoystickChanged;
+            GameSettings.GameSettingsManager.SettingsChanged -= OnLockJoystickChanged;
         }
 
         private void OnLockJoystickChanged(Settings settings)

@@ -1,19 +1,31 @@
 ﻿using System;
 using UnityEngine;
 
-namespace CrossFyre
+namespace CrossFyre.GameSettings
 {
-    public class GameSettings : MonoBehaviour
+    public class GameSettingsManager : MonoBehaviour
     {
         public static event Action<Settings> SettingsChanged;
 
-        private static Settings Settings { get; set; }
+        private static GameSettingsManager _instance;
 
-        [SerializeField] private Settings defaultSettings;
+        private static Settings Settings
+        {
+            get => _instance.settingsObject.settings;
+            set => _instance.settingsObject.settings = value;
+        }
+
+        [SerializeField] private GameSettingsObject settingsObject;
 
         private void Awake()
         {
-            Settings = defaultSettings;
+            if (_instance != null)
+            {
+                Destroy(this);
+                return;
+            }
+
+            _instance = this;
         }
 
         private void Start()
@@ -38,11 +50,5 @@ namespace CrossFyre
 
             ChangeSettings(newSettings);
         }
-    }
-
-    [Serializable]
-    public struct Settings
-    {
-        public bool lockJoystick;
     }
 }

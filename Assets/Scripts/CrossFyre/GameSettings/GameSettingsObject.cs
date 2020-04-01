@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
-namespace CrossFyre
+namespace CrossFyre.GameSettings
 {
     public class GameSettingsObject : ScriptableObject
     {
-        
+        public Settings settings;
     }
 }
