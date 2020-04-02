@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f8feca0ce7474d88064c2b810c37b5, type: 3}
   m_Name: GameSettings_default
   m_EditorClassIdentifier: 
+  settings:
+    debugMode: 1
+    lockJoystick: 0
