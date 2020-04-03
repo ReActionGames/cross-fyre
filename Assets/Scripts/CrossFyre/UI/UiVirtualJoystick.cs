@@ -36,6 +36,11 @@ namespace CrossFyre.UI
             PlayerInput.InputChanged += UpdateUi;
         }
 
+        private void OnDisable()
+        {
+            PlayerInput.InputChanged -= UpdateUi;
+        }
+
         private void UpdateUi(InputData data)
         {
             UpdateThresholdSizes(data);

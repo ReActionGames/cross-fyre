@@ -81,6 +81,8 @@ namespace CrossFyre
         public IEnumerator RestartArenaAsync()
         {
             yield return SceneManager.UnloadSceneAsync(ArenaName);
+            yield return SceneManager.UnloadSceneAsync(metaLevel);
+            yield return SceneManager.LoadSceneAsync(metaLevel, LoadSceneMode.Additive);
             yield return SceneManager.LoadSceneAsync(ArenaName, LoadSceneMode.Additive);
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(ArenaName));
         }
