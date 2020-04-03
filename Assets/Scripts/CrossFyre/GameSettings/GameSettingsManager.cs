@@ -10,7 +10,7 @@ namespace CrossFyre.GameSettings
 
         private static GameSettingsManager _instance;
 
-        private static Settings Settings
+        public static Settings Settings
         {
             get => _instance.settingsObject.settings;
             set => _instance.settingsObject.settings = value;
@@ -35,8 +35,8 @@ namespace CrossFyre.GameSettings
             SettingsChanged?.Invoke(Settings);
         }
 
+        //** Debug Function **//
         // Called by Odin Button
-        // ReSharper disable once UnusedMember.Local
         [Button(ButtonSizes.Gigantic, Name = "Update Settings"), PropertyOrder(-1)]
         private void NotifySettingsChanged()
         {

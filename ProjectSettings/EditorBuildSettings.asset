@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/PersistentScene.unity
+    guid: 83871ba6b0924ab488fdc6a052207232
+  - enabled: 1
+    path: Assets/Scenes/DebugScene.unity
+    guid: 1009b4a7938fc6f4bb00ec8ce32f262f
+  - enabled: 1
+    path: Assets/Scenes/MetaLevel.unity
+    guid: a0a30440171a95c48a4832b3c2e5ee6e
+  - enabled: 1
     path: Assets/Scenes/SquareArena.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/CircleArena.unity
+    guid: 5d396606683ea034aa9a4662d7c74e2c
   m_configObjects: {}
