@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using CrossFyre.GameSettings;
 using Sirenix.OdinInspector;
@@ -23,8 +22,8 @@ namespace CrossFyre
         {
             get
             {
-                arenaSceneNames.TryGetValue(arena, out var name);
-                return name;
+                arenaSceneNames.TryGetValue(arena, out var sceneName);
+                return sceneName;
             }
         }
 
@@ -35,27 +34,6 @@ namespace CrossFyre
 
         [SerializeField] private Dictionary<Arena, string> arenaSceneNames;
 
-        private void OnEnable()
-        {
-            GameSettingsManager.SettingsChanged += OnSettingsChanged;
-        }
-
-        private void OnDisable()
-        {
-            GameSettingsManager.SettingsChanged -= OnSettingsChanged;
-        }
-
-        private void OnSettingsChanged(Settings settings)
-        {
-            if (settings.debugMode)
-            {
-                SceneManager.LoadSceneAsync(debug, LoadSceneMode.Additive);
-            }
-            else
-            {
-                SceneManager.UnloadSceneAsync(debug);
-            }
-        }
 
         private IEnumerator Start()
         {
