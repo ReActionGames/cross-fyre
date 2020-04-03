@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using CrossFyre.GameSettings;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -7,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 namespace CrossFyre
 {
-    public class SceneLoader : MonoBehaviour
+    public class SceneLoader : SerializedMonoBehaviour
     {
         public enum Arena
         {
@@ -17,12 +18,22 @@ namespace CrossFyre
 
         [SerializeField] private Arena arena = Arena.Circle;
 
+        [ShowInInspector]
+        private string ArenaName
+        {
+            get
+            {
+                arenaSceneNames.TryGetValue(arena, out var name);
+                return name;
+            }
+        }
+
         [TitleGroup("Scene names")] [SerializeField]
         private string persistent = "PersistentScene",
             debug = "DebugScene",
-            metaLevel = "MetaLevel",
-            squareArena = "SquareArena",
-            circleArena = "CircleArena";
+            metaLevel = "MetaLevel";
+
+        [SerializeField] private Dictionary<Arena, string> arenaSceneNames;
 
         private void OnEnable()
         {
@@ -56,24 +67,22 @@ namespace CrossFyre
             }
 
             yield return SceneManager.LoadSceneAsync(metaLevel, LoadSceneMode.Additive);
-            
-            string arenaName;
-            switch (arena)
-            {
-                case Arena.Square:
-                    arenaName = squareArena;
-                    break;
-                case Arena.Circle:
-                    arenaName = circleArena;
-                    break;
-                default:
-                    arenaName = squareArena;
-                    throw new ArgumentOutOfRangeException();
-            }
 
-            yield return SceneManager.LoadSceneAsync(arenaName, LoadSceneMode.Additive);
+            yield return SceneManager.LoadSceneAsync(ArenaName, LoadSceneMode.Additive);
 
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName(arenaName));
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(ArenaName));
+        }
+
+        public void RestartArena()
+        {
+            StartCoroutine(RestartArenaAsync());
+        }
+
+        public IEnumerator RestartArenaAsync()
+        {
+            yield return SceneManager.UnloadSceneAsync(ArenaName);
+            yield return SceneManager.LoadSceneAsync(ArenaName, LoadSceneMode.Additive);
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(ArenaName));
         }
 
         private IEnumerator UnloadAllScenesExceptPersistent()
