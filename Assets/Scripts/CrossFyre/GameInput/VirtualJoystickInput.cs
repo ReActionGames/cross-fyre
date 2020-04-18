@@ -26,7 +26,6 @@ namespace CrossFyre.GameInput
 
         private void OnDisable()
         {
-            // UiLockJoystick.LockJoystickChanged -= OnLockJoystickChanged;
             GameSettingsManager.SettingsChanged -= OnLockJoystickChanged;
         }
 

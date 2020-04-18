@@ -1,6 +1,7 @@
 ﻿using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace CrossFyre.GameSettings
 {
@@ -10,7 +11,7 @@ namespace CrossFyre.GameSettings
 
         private static GameSettingsManager _instance;
 
-        private static Settings Settings
+        public static Settings Settings
         {
             get => _instance.settingsObject.settings;
             set => _instance.settingsObject.settings = value;
@@ -30,13 +31,29 @@ namespace CrossFyre.GameSettings
             _instance = this;
         }
 
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+
+
         private void Start()
         {
-            SettingsChanged?.Invoke(Settings);
+            NotifySettingsChanged();
+        }
+
+
+        private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+        {
+            NotifySettingsChanged();
         }
 
         // Called by Odin Button
-        // ReSharper disable once UnusedMember.Local
         [Button(ButtonSizes.Gigantic, Name = "Update Settings"), PropertyOrder(-1)]
         private void NotifySettingsChanged()
         {
@@ -47,9 +64,10 @@ namespace CrossFyre.GameSettings
         {
             if (Settings.debugMode)
             {
-                Debug.Log("Settings: Called by " + caller.GetType() + ";\nOld Settings: " + Settings + ";\nNew Settings: " + settings);
+                Debug.Log("Settings: Called by " + caller.GetType() + ";\nOld Settings: " + Settings +
+                          ";\nNew Settings: " + settings);
             }
-            
+
             Settings = settings;
 
             SettingsChanged?.Invoke(Settings);
