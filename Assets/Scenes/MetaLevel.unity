@@ -310,12 +310,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imgFloatThreshold: {fileID: 1180650214}
-  imgInnerThreshold: {fileID: 1004121423}
-  imgDeadThreshold: {fileID: 1203155960}
-  imgOriginPoint: {fileID: 1605563595}
   imgTouchPoint: {fileID: 1698856121}
-  activeAlpha: 0.141
-  inactiveAlpha: 0.025
+  activeAlpha: 0.9
+  inactiveAlpha: 0.3
 --- !u!1 &488073346
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,7 +754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.98542047, g: 0.99215686, b: 0.29411772, a: 0.12156863}
+  m_Color: {r: 0.98542047, g: 0.99215686, b: 0.29411772, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -976,7 +973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.29411772, g: 0.99215686, b: 0.3953274, a: 0.29803923}
+  m_Color: {r: 0.631, g: 0.631, b: 0.631, a: 0.9019608}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1049,7 +1046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.990566, g: 0.2943663, b: 0.2943663, a: 0.74509805}
+  m_Color: {r: 0.990566, g: 0.2943663, b: 0.2943663, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1462,7 +1459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1520,7 +1517,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 10}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1698856121
 MonoBehaviour:
@@ -1535,7 +1532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.4745098}
+  m_Color: {r: 0.37117925, g: 0.48153177, b: 0.61, a: 0.9019608}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
