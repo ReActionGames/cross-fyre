@@ -462,7 +462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spritesToCover:
   - {fileID: 1809886166}
-  accuracy: 0.1
+  padding: 0.5
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
