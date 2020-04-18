@@ -13,7 +13,6 @@ namespace CrossFyre
     {
         [SerializeField] private SpriteRenderer[] spritesToCover;
         [SerializeField] private float padding = 1f;
-        // [SerializeField] private float accuracy = 0.1f;
 
         private new Camera camera;
 
@@ -38,16 +37,7 @@ namespace CrossFyre
         private void Start()
         {
             ratio = (float)Screen.height / Screen.width;
-            Resize(); 
-
-            // var screenRect = WorldToScreenRect(viewRect, camera);
-            //
-            // camera.orthographicSize = screenRect.width * Screen.height / Screen.width * 0.5f;
-            // screenRect = WorldToScreenRect(viewRect, camera);
-            // if (screenRect.height > Screen.height)
-            // {
-            //     camera.orthographicSize = screenRect.height * 0.5f;
-            // }
+            Resize();
         }
 
         [Button]
@@ -57,10 +47,10 @@ namespace CrossFyre
             viewRect = AddPadding(viewRect, padding);
 
             targetRect = viewRect;
-            // Debug.Log((float)Screen.height / Screen.width);
 
             camera.orthographicSize = viewRect.width * ratio * camera.rect.height * 0.5f;
             
+            // Adjust for height does not quite work. Fix later
             if (viewRect.height > camera.orthographicSize * 2f)
             {
                 camera.orthographicSize = viewRect.height * camera.rect.height * 0.5f;
@@ -72,7 +62,7 @@ namespace CrossFyre
         {
             return CalcViewRectFromBounds(renderers.Select(sprite => sprite.bounds));
         }
-        //(x:-0.50, y:0.50, width:1.00, height:-1.00)
+        
         public static Rect CalcViewRectFromBounds(IEnumerable<Bounds> bounds)
         {
             var max = Vector2.zero;
