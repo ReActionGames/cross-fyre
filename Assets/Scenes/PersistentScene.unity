@@ -271,3 +271,4 @@ MonoBehaviour:
   persistent: PersistentScene
   debug: DebugScene
   metaLevel: MetaLevel
+  sceneFolderPath: Assets/Scenes
