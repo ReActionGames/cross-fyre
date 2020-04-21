@@ -644,7 +644,7 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
-    7: ODIN_INSPECTOR
+    7: ODIN_INSPECTOR;dUI_DoozyUI;dUI_TextMeshPro
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}
