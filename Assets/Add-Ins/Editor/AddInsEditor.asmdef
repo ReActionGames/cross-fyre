@@ -1,6 +1,8 @@
 {
     "name": "AddInsEditor",
-    "references": [],
+    "references": [
+        "GUID:c3031e5a86d071645a72d196b3638892"
+    ],
     "includePlatforms": [
         "Editor"
     ],

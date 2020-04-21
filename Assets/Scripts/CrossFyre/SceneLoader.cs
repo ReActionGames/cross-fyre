@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 namespace CrossFyre
 {
-    public class SceneLoader : SerializedMonoBehaviour
+    public class SceneLoader : SerializedMonoBehaviourSingleton<SceneLoader>
     {
         public enum Arena
         {
@@ -16,14 +16,20 @@ namespace CrossFyre
             Circle
         }
 
-        [SerializeField] private Arena arena = Arena.Circle;
+        public enum OtherScene
+        {
+            TestMenu
+        }
+
+        [SerializeField] private Arena selectedArena = Arena.Circle;
+        // [SerializeField] private OtherScene selectedOtherScene = OtherScene.TestMenu;
 
         [ShowInInspector]
         private string ArenaName
         {
             get
             {
-                arenaSceneNames.TryGetValue(arena, out var sceneName);
+                arenaSceneNames.TryGetValue(selectedArena, out var sceneName);
                 return sceneName;
             }
         }
@@ -34,13 +40,8 @@ namespace CrossFyre
             metaLevel = "MetaLevel";
 
         [SerializeField] private Dictionary<Arena, string> arenaSceneNames;
+        [SerializeField] private Dictionary<OtherScene, string> otherSceneNames;
         [SerializeField] private string sceneFolderPath = "Assets/Scenes";
-
-
-        private IEnumerator Start()
-        {
-            yield return LoadSelectedArena(GameSettingsManager.Settings.debugMode);
-        }
 
 #if UNITY_EDITOR
         [DisableInPlayMode]
@@ -69,7 +70,13 @@ namespace CrossFyre
         }
 #endif
 
-        private IEnumerator LoadSelectedArena(bool debugMode)
+        public void LoadArena(Arena arena)
+        {
+            var debugMode = GameSettingsManager.Settings.debugMode;
+            StartCoroutine(LoadArenaAsync(arena, debugMode));
+        }
+
+        private IEnumerator LoadArenaAsync(Arena arena, bool debugMode = false)
         {
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(persistent));
             yield return StartCoroutine(UnloadAllScenesExceptPersistent());
@@ -80,11 +87,33 @@ namespace CrossFyre
 
             yield return SceneManager.LoadSceneAsync(metaLevel, LoadSceneMode.Additive);
 
-            yield return SceneManager.LoadSceneAsync(ArenaName, LoadSceneMode.Additive);
+            arenaSceneNames.TryGetValue(arena, out var arenaName);
+            yield return SceneManager.LoadSceneAsync(arenaName, LoadSceneMode.Additive);
 
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName(ArenaName));
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(arenaName));
         }
 
+        public void LoadOtherScene(OtherScene scene)
+        {
+            var debugMode = GameSettingsManager.Settings.debugMode;
+            StartCoroutine(LoadOtherSceneAsync(scene, debugMode));
+        }
+
+        private IEnumerator LoadOtherSceneAsync(OtherScene scene, bool debugMode = false)
+        {
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(persistent));
+            yield return StartCoroutine(UnloadAllScenesExceptPersistent());
+            if (debugMode)
+            {
+                yield return SceneManager.LoadSceneAsync(debug, LoadSceneMode.Additive);
+            }
+            
+            otherSceneNames.TryGetValue(scene, out var sceneName);
+            yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
+        }
+        
         public void RestartArena()
         {
             StartCoroutine(RestartArenaAsync());
