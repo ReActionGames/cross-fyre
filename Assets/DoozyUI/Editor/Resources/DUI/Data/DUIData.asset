@@ -78,44 +78,13 @@ MonoBehaviour:
     - Uncategorized
   DatabaseUIButtons:
     categories:
-    - categoryName: Example 1 - SimpleScene
+    - categoryName: MetaLevel
       itemNames:
-      - 1
-      - 2
-      - 3
-      - Back
+      - BackToTestMenu
       isExpanded:
-        m_Target: 0
+        m_Target: 1
         speed: 2
-        m_Value: 0
-    - categoryName: Example 2 - OrientationManager
-      itemNames:
-      - Back
-      - SecondMenu
-      isExpanded:
-        m_Target: 0
-        speed: 2
-        m_Value: 0
-    - categoryName: Example 3 - Buttons
-      itemNames:
-      - Next
-      - Previous
-      isExpanded:
-        m_Target: 0
-        speed: 2
-        m_Value: 0
-    - categoryName: Example 4 - Simple UI
-      itemNames:
-      - ApplicationQuit
-      - Continue
-      - LoseGame
-      - Play
-      - Start
-      - WinGame
-      isExpanded:
-        m_Target: 0
-        speed: 2
-        m_Value: 0
+        m_Value: 1
     - categoryName: TestMenu
       itemNames:
       - Back
@@ -135,10 +104,7 @@ MonoBehaviour:
         m_Value: 0
     categoryNames:
     - ~Custom Name~
-    - Example 1 - SimpleScene
-    - Example 2 - OrientationManager
-    - Example 3 - Buttons
-    - Example 4 - Simple UI
+    - MetaLevel
     - TestMenu
     - Uncategorized
   DatabaseUICanvases:

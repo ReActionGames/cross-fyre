@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿#if UNITY_EDITOR
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -8,7 +9,6 @@ namespace CrossFyre.Debugging
 {
     public class DebugSceneLoader : MonoBehaviour
     {
-#if UNITY_EDITOR
         [SerializeField] private SceneLoaderData data;
 
         [PropertyOrder(10), PropertySpace(16)] [SerializeField]
@@ -84,6 +84,6 @@ namespace CrossFyre.Debugging
 
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(OtherSceneName));
         }
-#endif
     }
 }
+#endif

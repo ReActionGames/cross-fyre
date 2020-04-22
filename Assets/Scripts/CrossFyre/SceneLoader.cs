@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using CrossFyre.GameSettings;
 using Sirenix.OdinInspector;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,7 +24,15 @@ namespace CrossFyre
 
 
         private Arena currentArena;
-        
+
+        private void Start()
+        {
+            if (!Application.isEditor)
+            {
+                LoadOtherScene(OtherScene.TestMenu);
+            }
+        }
+
         public void LoadArena(Arena arena)
         {
             var debugMode = GameSettingsManager.Settings.debugMode;

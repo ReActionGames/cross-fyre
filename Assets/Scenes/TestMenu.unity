@@ -4680,7 +4680,7 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-      startDelay: 0
+      startDelay: 0.2
       duration: 0.2
     moveIsExpanded:
       m_Target: 0

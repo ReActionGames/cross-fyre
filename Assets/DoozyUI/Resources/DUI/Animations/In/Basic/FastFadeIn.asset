@@ -51,7 +51,7 @@ MonoBehaviour:
       animationType: 0
       scale: {x: 0.9, y: 0.9, z: 0.9}
       easeType: 0
-      ease: 2
+      ease: 3
       animationCurve:
         serializedVersion: 2
         m_Curve: []
