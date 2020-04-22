@@ -56,6 +56,7 @@ MonoBehaviour:
     - categoryName: TestMenu
       itemNames:
       - Base Menu
+      - Settings
       isExpanded:
         m_Target: 1
         speed: 2
@@ -117,6 +118,7 @@ MonoBehaviour:
         m_Value: 0
     - categoryName: TestMenu
       itemNames:
+      - Back
       - CircleArena
       - Settings
       - SquareArena
@@ -232,9 +234,9 @@ MonoBehaviour:
       - SubsideRight
       - SubsideVertical
       isExpanded:
-        m_Target: 0
+        m_Target: 1
         speed: 2
-        m_Value: 0
+        m_Value: 1
     - categoryName: Drop
       presets:
       - {fileID: 11400000, guid: fed27f3eda97fbd4db77ed7461aa5c32, type: 2}
@@ -487,9 +489,9 @@ MonoBehaviour:
       - SubsideRight
       - SubsideVertical
       isExpanded:
-        m_Target: 0
+        m_Target: 1
         speed: 2
-        m_Value: 0
+        m_Value: 1
     - categoryName: Drop
       presets:
       - {fileID: 11400000, guid: eeb0006792619e340a3efce60b822cb1, type: 2}

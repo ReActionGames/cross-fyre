@@ -220,7 +220,6 @@ MonoBehaviour:
     SerializationNodes: []
   autoInstantiateIfNull: 0
   dontDestroyOnLoad: 0
-  selectedArena: 1
   data: {fileID: 11400000, guid: f01ea695e145d264fa3766f8615ab466, type: 2}
 --- !u!114 &999102093
 MonoBehaviour:
