@@ -118,7 +118,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.1.23
+  bundleVersion: 0.1.25
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -166,8 +166,8 @@ PlayerSettings:
     Standalone: com.Company.ProductName
     iPhone: com.reactiongames.crossfyre
   buildNumber:
-    iPhone: 1023
-  AndroidBundleVersionCode: 1023
+    iPhone: 1025
+  AndroidBundleVersionCode: 1025
   AndroidMinSdkVersion: 19
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
@@ -644,7 +644,7 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
-    7: ODIN_INSPECTOR
+    7: ODIN_INSPECTOR;dUI_DoozyUI;dUI_TextMeshPro
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}

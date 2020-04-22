@@ -1,4 +1,5 @@
-﻿using CrossFyre.GameSettings;
+﻿using System;
+using CrossFyre.GameSettings;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,18 @@ namespace CrossFyre.UI
     public class UiLockJoystick : MonoBehaviour
     {
         [SerializeField] private Toggle toggle;
+
+        private void Start()
+        {
+            if (!toggle)
+            {
+                Debug.LogError("No toggle set in inspector!");
+                return;
+            }
+            
+            toggle.onValueChanged.RemoveListener(OnToggled);
+            toggle.onValueChanged.AddListener(OnToggled);
+        }
 
         private void OnEnable()
         {

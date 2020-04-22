@@ -11,11 +11,13 @@ public class MonoBehaviourSingleton<TSelfType> : MonoBehaviour where TSelfType :
     /// <summary>
     /// The single instance of this class.
     /// </summary>
-    private static TSelfType m_Instance = null;
+    private static TSelfType _instance = null;
 
-    private static bool m_autoInstantiateIfNull = false;
+    private static bool _autoInstantiateIfNull = false;
+    private static bool _dontDestroyOnLoad = false;
 
     [SerializeField] private bool autoInstantiateIfNull = false;
+    [SerializeField] private bool dontDestroyOnLoad = false;
 
     #endregion Private Fields
 
@@ -28,19 +30,18 @@ public class MonoBehaviourSingleton<TSelfType> : MonoBehaviour where TSelfType :
     {
         get
         {
-            if (m_Instance == null)
+            if (_instance != null) return _instance;
+            
+            _instance = (TSelfType)FindObjectOfType(typeof(TSelfType));
+            if (_instance == null)
             {
-                m_Instance = (TSelfType)FindObjectOfType(typeof(TSelfType));
-                if (m_Instance == null)
-                {
-                    if (!m_autoInstantiateIfNull)
-                        return null;
-                    m_Instance = (new GameObject(typeof(TSelfType).Name)).AddComponent<TSelfType>();
-                }
-
-                DontDestroyOnLoad(m_Instance.gameObject);
+                if (!_autoInstantiateIfNull)
+                    return null;
+                _instance = (new GameObject(typeof(TSelfType).Name)).AddComponent<TSelfType>();
             }
-            return m_Instance;
+
+            if(_dontDestroyOnLoad) DontDestroyOnLoad(_instance.gameObject);
+            return _instance;
         }
     }
 
@@ -48,6 +49,7 @@ public class MonoBehaviourSingleton<TSelfType> : MonoBehaviour where TSelfType :
 
     private void Awake()
     {
-        m_autoInstantiateIfNull = autoInstantiateIfNull;
+        _autoInstantiateIfNull = autoInstantiateIfNull;
+        _dontDestroyOnLoad = dontDestroyOnLoad;
     }
 }
