@@ -175,6 +175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 999102091}
   - component: {fileID: 999102092}
+  - component: {fileID: 999102093}
   m_Layer: 0
   m_Name: SceneLoader
   m_TagString: Untagged
@@ -216,59 +217,23 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: arenaSceneNames
-      Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[CrossFyre.SceneLoader+Arena,
-        GameAssemby],[System.String, mscorlib]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[CrossFyre.SceneLoader+Arena,
-        GameAssemby]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 0
-    - Name: $v
-      Entry: 1
-      Data: SquareArena
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 1
-    - Name: $v
-      Entry: 1
-      Data: CircleArena
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-  arena: 1
-  persistent: PersistentScene
-  debug: DebugScene
-  metaLevel: MetaLevel
-  sceneFolderPath: Assets/Scenes
+    SerializationNodes: []
+  autoInstantiateIfNull: 0
+  dontDestroyOnLoad: 0
+  selectedArena: 1
+  data: {fileID: 11400000, guid: f01ea695e145d264fa3766f8615ab466, type: 2}
+--- !u!114 &999102093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999102090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6526a236e968744493d07c976c81f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: f01ea695e145d264fa3766f8615ab466, type: 2}
+  selectedArena: 1
+  selectedOtherScene: 0

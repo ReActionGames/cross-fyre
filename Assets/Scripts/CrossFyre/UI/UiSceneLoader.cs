@@ -5,16 +5,16 @@ namespace CrossFyre.UI
 {
     public class UiSceneLoader : MonoBehaviour
     {
-        [EnumAction(typeof(SceneLoader.Arena))]
+        [EnumAction(typeof(Arena))]
         public void LoadArena(int arena)
         {
-            SceneLoader.Instance.LoadArena((SceneLoader.Arena) arena);
+            SceneLoader.Instance.LoadArena((Arena) arena);
         }
 
-        [EnumAction(typeof(SceneLoader.OtherScene))]
+        [EnumAction(typeof(OtherScene))]
         public void LoadOtherScene(int scene)
         {
-            SceneLoader.Instance.LoadOtherScene((SceneLoader.OtherScene) scene);
+            SceneLoader.Instance.LoadOtherScene((OtherScene) scene);
         }
     }
 }
