@@ -1,5 +1,6 @@
 ﻿using System;
 using CrossFyre.Player;
+using Lean.Pool;
 using UnityEngine;
 
 namespace CrossFyre.Gun
@@ -54,7 +55,8 @@ namespace CrossFyre.Gun
 
         public void FireProjectile()
         {
-            Instantiate(projectilePrefab, firePoint.position, transform.rotation);
+            LeanPool.Spawn(projectilePrefab, firePoint.position, transform.rotation);
+            // Instantiate(projectilePrefab, firePoint.position, transform.rotation);
         }
 
         public void StartFlash()
