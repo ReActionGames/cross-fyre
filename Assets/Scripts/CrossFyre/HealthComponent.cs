@@ -40,5 +40,10 @@ namespace CrossFyre
                 OnDeath?.Invoke();
             }
         }
+
+        public void ResetHealth()
+        {
+            _health = _maxHealth;
+        }
     }
 }

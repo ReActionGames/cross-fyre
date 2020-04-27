@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Lean.Pool;
 using UnityEngine;
 
 namespace CrossFyre.Gun
@@ -37,7 +38,7 @@ namespace CrossFyre.Gun
             var spawnPoint = availableSpawnPoints.PickRandom();
             if (spawnPoint == null) return;
 
-            var gun = Instantiate(gunPrefab, spawnPoint.position, Quaternion.identity);
+            var gun = LeanPool.Spawn(gunPrefab, spawnPoint.position, Quaternion.identity);
 
             availableSpawnPoints.Remove(spawnPoint);
             occupiedSpawnPoints.Add(gun, spawnPoint);
