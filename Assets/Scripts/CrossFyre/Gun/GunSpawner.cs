@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Lean.Pool;
 using UnityEngine;
 
 namespace CrossFyre.Gun
@@ -26,19 +27,18 @@ namespace CrossFyre.Gun
         {
             timeCounter += Time.deltaTime;
 
-            if(timeCounter >= spawnRate && numGuns < maxGuns)
-            {
-                SpawnGun();
-                timeCounter = 0;
-            }
+            if (!(timeCounter >= spawnRate) || !(numGuns < maxGuns)) return;
+            
+            SpawnGun();
+            timeCounter = 0;
         }
 
         private void SpawnGun()
         {
-            Transform spawnPoint = availableSpawnPoints.PickRandom();
+            var spawnPoint = availableSpawnPoints.PickRandom();
             if (spawnPoint == null) return;
 
-            GunController gun = Instantiate(gunPrefab, spawnPoint.position, Quaternion.identity);
+            var gun = LeanPool.Spawn(gunPrefab, spawnPoint.position, Quaternion.identity);
 
             availableSpawnPoints.Remove(spawnPoint);
             occupiedSpawnPoints.Add(gun, spawnPoint);
@@ -48,7 +48,7 @@ namespace CrossFyre.Gun
 
         private void OnGunDied(GunController gun)
         {
-            occupiedSpawnPoints.TryGetValue(gun, out Transform spawnpoint);
+            occupiedSpawnPoints.TryGetValue(gun, out var spawnpoint);
             availableSpawnPoints.Add(spawnpoint);
             occupiedSpawnPoints.Remove(gun);
 

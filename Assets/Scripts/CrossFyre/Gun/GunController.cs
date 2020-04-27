@@ -1,11 +1,12 @@
 ﻿using System;
 using CrossFyre.Player;
+using Lean.Pool;
 using UnityEngine;
 
 namespace CrossFyre.Gun
 {
     [RequireComponent(typeof(HealthComponent))]
-    public partial class GunController : MonoBehaviour
+    public partial class GunController : MonoBehaviour, IPoolable
     {
         public static event Action<GunController> OnDeath;
 
@@ -41,7 +42,7 @@ namespace CrossFyre.Gun
         private void Die()
         {
             OnDeath?.Invoke(this);
-            Destroy(gameObject);
+            LeanPool.Despawn(gameObject);
         }
 
         public void LookAtPlayer()
@@ -49,12 +50,11 @@ namespace CrossFyre.Gun
             if (!player) return;
 
             transform.right = Vector3.Lerp(transform.right, (player.transform.position - transform.position), turnRate);
-            //transform.right = player.transform.position - transform.position;
         }
 
         public void FireProjectile()
         {
-            Instantiate(projectilePrefab, firePoint.position, transform.rotation);
+            LeanPool.Spawn(projectilePrefab, firePoint.position, transform.rotation);
         }
 
         public void StartFlash()
@@ -63,6 +63,16 @@ namespace CrossFyre.Gun
         }
 
         public void StopFlash()
+        {
+            flasher.StopFlash();
+        }
+
+        public void OnSpawn()
+        {
+            health.ResetHealth();
+        }
+
+        public void OnDespawn()
         {
             flasher.StopFlash();
         }

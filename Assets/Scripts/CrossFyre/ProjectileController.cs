@@ -1,10 +1,13 @@
-﻿using CrossFyre.Interfaces;
+﻿using System;
+using CrossFyre.Gun;
+using CrossFyre.Interfaces;
 using DG.Tweening;
+using Lean.Pool;
 using UnityEngine;
 
 namespace CrossFyre
 {
-    public class ProjectileController : MonoBehaviour
+    public class ProjectileController : MonoBehaviour,IPoolable
     {
         [SerializeField] private float colliderActivationDelay = 0.1f;
         [SerializeField] private float velocity = 5;
@@ -18,24 +21,34 @@ namespace CrossFyre
             collider = GetComponent<Collider2D>();
         }
 
-        private void Start()
-        {
-            ApplyStartingVelocity();
-            collider.enabled = false;
-            DOVirtual.DelayedCall(colliderActivationDelay, () => collider.enabled = true);
-        }
-
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            IDamageable damageable = collision.collider.GetComponent<IDamageable>();
+            var damageable = collision.collider.GetComponent<IDamageable>();
             if (damageable == null) return;
             damageable.TakeDamage(1);
-            Destroy(gameObject);
+            LeanPool.Despawn(gameObject);
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            var gun = other.GetComponent<GunController>();
+            if (gun == null) return;
+            collider.isTrigger = false;
         }
 
         private void ApplyStartingVelocity()
         {
             rigidbody2D.velocity += (Vector2)transform.right * velocity;
+        }
+
+        public void OnSpawn()
+        {
+            ApplyStartingVelocity();
+            collider.isTrigger = true;
+        }
+
+        public void OnDespawn()
+        {
         }
     }
 }
