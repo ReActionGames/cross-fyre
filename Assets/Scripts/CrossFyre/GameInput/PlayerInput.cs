@@ -37,26 +37,4 @@ namespace CrossFyre.GameInput
             return currentInputProvider.GetInitialPosition().With(z: 0);
         }
     }
-
-    public enum InputState
-    {
-        NotTouching,
-        Dead,
-        Inner,
-        Normal,
-        Sprint
-    }
-
-    public struct InputData
-    {
-        public Vector2 input;
-
-        public float floatThreshold;
-        public float innerThreshold;
-        public float deadThreshold;
-
-        public InputState state;
-        public Vector2 originPoint;
-        public Vector2 touchPoint;
-    }
 }
