@@ -1,12 +1,12 @@
-﻿using System.Collections;
-using DG.Tweening;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace CrossFyre.Gun
 {
-    public class Flasher
+    public class MonoFlash : MonoBehaviour
     {
-        public struct FlashSprite
+        private struct FlashSprite
         {
             public readonly SpriteRenderer renderer;
             public readonly Color mainColor;
@@ -29,53 +29,61 @@ namespace CrossFyre.Gun
             }
         }
 
-        private readonly float duration;
+        [SerializeField] private float flashDuration = 0.2f;
+        [SerializeField] private Color flashedColor = Color.white;
+        [SerializeField] private SpriteRenderer[] spriteRenderers;
+        
+        private FlashSprite[] sprites;
+        private bool flash;
+        private float startTime;
+        private float elapsedTime;
 
-        private readonly FlashSprite[] sprites;
-        private readonly Sequence sequence;
-
-        public Flasher(float flashDuration, Color flashedColor, params SpriteRenderer[] renderers)
+        private void Awake()
         {
-            this.duration = flashDuration;
-            //var renderers = renderers;
-            this.sprites = GetFlashSprites(renderers, flashedColor);
-            this.sequence = GetSequence(sprites, flashDuration);
+            sprites = GetFlashSprites(spriteRenderers, flashedColor);
         }
+
 
         private static FlashSprite[] GetFlashSprites(SpriteRenderer[] renderers, Color color)
         {
             var sprites = new FlashSprite[renderers.Length];
-            for (int i = 0; i < renderers.Length; i++)
+            for (var i = 0; i < renderers.Length; i++)
             {
                 sprites[i] = new FlashSprite(renderers[i], color);
             }
             return sprites;
         }
 
-        private static Sequence GetSequence(FlashSprite[] sprites, float duration)
-        {
-            var sequence = DOTween.Sequence();
-            sequence.Append(sprites[0].renderer.DOGradientColor(sprites[0].gradient, duration));
-            for (int i = 1; i < sprites.Length; i++)
-            {
-                sequence.Join(sprites[i].renderer.DOGradientColor(sprites[i].gradient, duration));
-            }
-            sequence.SetLoops(-1);
-            sequence.Pause();
-            return sequence;
-        }
-    
         public void StartFlash()
         {
-            sequence.Restart();
+            startTime = Time.time;
+            elapsedTime = 0f;
+            
+            flash = true;
         }
 
         public void StopFlash()
         {
-            sequence.Pause();
+            flash = false;
+
             foreach (var sprite in sprites)
             {
-                sprite.renderer.DOColor(sprite.mainColor, duration);
+                sprite.renderer.color = sprite.mainColor;
+            }
+        }
+
+        private void Update()
+        {
+            if (!flash) return;
+
+            elapsedTime += Time.deltaTime;
+            var percent = elapsedTime / flashDuration;
+            percent -= Mathf.Floor(percent); // Only use digits after decimal point
+
+            foreach (var sprite in sprites)
+            {
+                var color = sprite.gradient.Evaluate(percent);
+                sprite.renderer.color = color;
             }
         }
     }

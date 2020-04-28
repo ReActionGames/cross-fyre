@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CrossFyre.Gun
 {
-    [RequireComponent(typeof(HealthComponent))]
+    [RequireComponent(typeof(HealthComponent), typeof(MonoFlash))]
     public partial class GunController : MonoBehaviour, IPoolable
     {
         public static event Action<GunController> OnDeath;
@@ -20,13 +20,15 @@ namespace CrossFyre.Gun
 
         private HealthComponent health;
         private PlayerController player;
-        private Flasher flasher;
-    
+        // private Flasher flasher;
+        private MonoFlash flasher;
+        
         private void Awake()
         {
             health = GetComponent<HealthComponent>();
             player = FindObjectOfType<PlayerController>();
-            flasher = new Flasher(flashDuration, flashColor, GetComponentsInChildren<SpriteRenderer>());
+            // flasher = new Flasher(flashDuration, flashColor, GetComponentsInChildren<SpriteRenderer>());
+            flasher = GetComponent<MonoFlash>();
         }
 
         private void OnEnable()

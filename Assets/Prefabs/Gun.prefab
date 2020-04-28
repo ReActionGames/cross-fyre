@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 8119843414415900374}
   - component: {fileID: 4599589779146226201}
   - component: {fileID: 8616555195983261073}
+  - component: {fileID: 7558899945892343986}
   m_Layer: 9
   m_Name: Gun
   m_TagString: Untagged
@@ -260,6 +261,23 @@ MonoBehaviour:
   patrolDuration: 1.5
   lockDuration: 0.5
   fireDuration: 0.25
+--- !u!114 &7558899945892343986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905664088247212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5feb5ff721c54cc458fb42b90b5f7f55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashDuration: 0.2
+  flashedColor: {r: 1, g: 1, b: 1, a: 1}
+  spriteRenderers:
+  - {fileID: 8040962871734194442}
+  - {fileID: 200980216}
 --- !u!1 &4044340959299499671
 GameObject:
   m_ObjectHideFlags: 0
