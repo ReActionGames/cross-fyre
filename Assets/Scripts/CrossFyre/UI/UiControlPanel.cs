@@ -12,12 +12,12 @@ namespace CrossFyre.UI
 
         private void OnEnable()
         {
-            FindObjectOfType<PlayerController>().Health.OnDeath.AddListener(Deactivate);
+            GameEvents.GameEnded += Deactivate;
         }
 
         private void OnDisable()
         {
-            FindObjectOfType<PlayerController>().Health.OnDeath.RemoveListener(Deactivate);
+            GameEvents.GameEnded -= Deactivate;
         }
 
         private void Deactivate()

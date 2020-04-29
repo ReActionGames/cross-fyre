@@ -45,6 +45,7 @@ namespace CrossFyre.Player
 
         private void Die()
         {
+            GameEvents.TriggerStandardEvent(StandardEvent.GameEnded);
             Destroy(gameObject);
         }
 
