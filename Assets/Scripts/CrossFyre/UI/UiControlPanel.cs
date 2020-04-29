@@ -1,12 +1,29 @@
 ﻿using System;
+using CrossFyre.Player;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace CrossFyre.UI
 {
     public class UiControlPanel : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         public event Action<PointerEventData> BeginDrag, Drag, EndDrag;
+
+        private void OnEnable()
+        {
+            GameEvents.GameEnded += Deactivate;
+        }
+
+        private void OnDisable()
+        {
+            GameEvents.GameEnded -= Deactivate;
+        }
+
+        private void Deactivate()
+        {
+            GetComponent<Image>().raycastTarget = false;
+        }
 
         public void OnBeginDrag(PointerEventData eventData)
         {

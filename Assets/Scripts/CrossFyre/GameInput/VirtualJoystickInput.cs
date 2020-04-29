@@ -1,5 +1,7 @@
-﻿using CrossFyre.GameSettings;
+﻿using System;
+using CrossFyre.GameSettings;
 using CrossFyre.UI;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -7,17 +9,39 @@ namespace CrossFyre.GameInput
 {
     public class VirtualJoystickInput : MonoBehaviour, IInputProvider
     {
-        // [SerializeField] private Vector2 sensitivity;
-        [SerializeField] private float sprintThreshold = 150f;
-        [SerializeField] private float normalThreshold = 140f;
-        [SerializeField] private float innerThreshold = 115f;
-        [SerializeField] private float deadThreshold = 40f;
+        [SerializeField] private float originalSprintThreshold = 150f;
+        [SerializeField] private float originalNormalThreshold = 140f;
+        [SerializeField] private float originalInnerThreshold = 115f;
+        [SerializeField] private float originalDeadThreshold = 20f;
+        [SerializeField] private float factor = 567.53f;
+
+        [ShowInInspector, ReadOnly]
+        private float sprintThreshold,
+            normalThreshold,
+            innerThreshold,
+            deadThreshold;
 
         private bool isTouching;
         private bool lockJoystick;
         private Vector2 originPoint = Vector2.zero;
         private Vector2 touchPoint = Vector2.zero;
 
+        private void Start()
+        {
+            RecalculateThresholds();
+        }
+
+        [Button]
+        private void RecalculateThresholds()
+        {
+            var dpi = Screen.dpi / factor;
+            // Debug.Log(dpi);
+
+            sprintThreshold = originalSprintThreshold / dpi;
+            normalThreshold = originalNormalThreshold / dpi;
+            innerThreshold = originalInnerThreshold / dpi;
+            deadThreshold = originalDeadThreshold / dpi;
+        }
 
         private void OnEnable()
         {

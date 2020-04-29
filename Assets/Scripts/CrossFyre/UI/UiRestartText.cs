@@ -14,12 +14,12 @@ namespace CrossFyre.UI
 
         private void OnEnable()
         {
-            FindObjectOfType<PlayerController>().GetComponent<HealthComponent>().OnDeath.AddListener(ActivateText);
+            GameEvents.GameEnded += ActivateText;
         }
 
         private void OnDisable()
         {
-            FindObjectOfType<PlayerController>()?.GetComponent<HealthComponent>().OnDeath.RemoveListener(ActivateText);
+            GameEvents.GameEnded -= ActivateText;
         }
 
         private void ActivateText()

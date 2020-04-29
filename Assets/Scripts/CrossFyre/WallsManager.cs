@@ -18,6 +18,7 @@ namespace CrossFyre
 
         [SerializeField] private bool rotateActiveWalls = true;
         [SerializeField] private float switchInterval = 3;
+        [SerializeField] private new Camera camera;
 
         private Wall[] walls = null;
 
@@ -45,8 +46,8 @@ namespace CrossFyre
 
         private void SetWallSizes()
         {
-            Vector2 topRight = (Vector2) Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane));
-            Vector2 bottomLeft = (Vector2) Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
+            var topRight = (Vector2) camera.ViewportToWorldPoint(new Vector3(1, 1, camera.nearClipPlane));
+            var bottomLeft = (Vector2) camera.ViewportToWorldPoint(new Vector3(0, 0, camera.nearClipPlane));
 
             foreach (var wall in walls)
             {
@@ -71,8 +72,9 @@ namespace CrossFyre
         private void SwitchEnabledWall()
         {
             DisableAllWalls();
-            Wall wall = walls.PickRandom();
+            var wall = walls.PickRandom();
             wall.SetEnabled(true);
+            ActiveWall = wall.Side;
             OnWallChanged?.Invoke(wall.Side);
         }
 

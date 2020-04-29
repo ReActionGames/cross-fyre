@@ -835,6 +835,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateActiveWalls: 1
   switchInterval: 5
+  camera: {fileID: 519420031}
 --- !u!4 &862548304
 Transform:
   m_ObjectHideFlags: 0
