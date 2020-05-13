@@ -14,20 +14,14 @@ namespace CrossFyre.Gun
         [SerializeField] private Transform firePoint = null;
         [SerializeField] private Transform projectilePrefab = null;
 
-        [Space]
-        [SerializeField] private float flashDuration = 0.2f;
-        [SerializeField] private Color flashColor = Color.white;
-
         private HealthComponent health;
         private PlayerController player;
-        // private Flasher flasher;
         private MonoFlash flasher;
         
         private void Awake()
         {
             health = GetComponent<HealthComponent>();
             player = FindObjectOfType<PlayerController>();
-            // flasher = new Flasher(flashDuration, flashColor, GetComponentsInChildren<SpriteRenderer>());
             flasher = GetComponent<MonoFlash>();
         }
 

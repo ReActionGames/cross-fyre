@@ -8,41 +8,40 @@ namespace CrossFyre.Player
     [RequireComponent(typeof(PlayerInput))]
     public class PlayerController : MonoBehaviour
     {
-        public HealthComponent Health { get; private set; }
-
         [SerializeField] private float fastSpeed = 6f;
         [SerializeField] private float slowSpeed = 4f;
         [SerializeField] private float acceleration = 20f;
 
         private PlayerInput inputProvider;
         private new Rigidbody2D rigidbody2D;
+        private HealthComponent health;
 
         private Vector2 inputCache = Vector2.zero;
         private float maxSpeed = 6f;
 
         private void Awake()
         {
-            Health = GetComponent<HealthComponent>();
+            health = GetComponent<HealthComponent>();
             inputProvider = GetComponent<PlayerInput>();
             rigidbody2D = GetComponent<Rigidbody2D>();
 
-            Health.SetMaxHealth(GameSettingsManager.Settings.playerHealth);
-            Health.ResetHealth();
+            health.SetMaxHealth(GameSettingsManager.Settings.playerHealth);
+            health.ResetHealth();
         }
 
         private void OnEnable()
         {
-            Health.onDeath.AddListener(Die);
-            Health.onDeath.AddListener(TriggerDieEvent);
-            Health.onHealthChanged.AddListener(TriggerOnHealthChangedEvent);
+            health.onDeath.AddListener(Die);
+            health.onDeath.AddListener(TriggerDieEvent);
+            health.onHealthChanged.AddListener(TriggerOnHealthChangedEvent);
             PlayerInput.InputChanged += ResolveInput;
         }
 
         private void OnDisable()
         {
-            Health.onDeath.RemoveListener(Die);
-            Health.onDeath.RemoveListener(TriggerDieEvent);
-            Health.onHealthChanged.RemoveListener(TriggerOnHealthChangedEvent);
+            health.onDeath.RemoveListener(Die);
+            health.onDeath.RemoveListener(TriggerDieEvent);
+            health.onHealthChanged.RemoveListener(TriggerOnHealthChangedEvent);
         }
 
         private static void TriggerOnHealthChangedEvent(int health)
