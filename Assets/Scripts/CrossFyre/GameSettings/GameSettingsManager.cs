@@ -48,7 +48,7 @@ namespace CrossFyre.GameSettings
         }
 
 
-        private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             NotifySettingsChanged();
         }
@@ -73,12 +73,13 @@ namespace CrossFyre.GameSettings
             SettingsChanged?.Invoke(Settings);
         }
 
-        public static void ChangeSettings(object caller, bool? debugMode = null, bool? lockJoystick = null)
+        public static void ChangeSettings(object caller, bool? debugMode = null, bool? lockJoystick = null, int? playerHealth = null)
         {
             var newSettings = new Settings
             {
                 debugMode = debugMode ?? Settings.debugMode,
-                lockJoystick = lockJoystick ?? Settings.lockJoystick
+                lockJoystick = lockJoystick ?? Settings.lockJoystick,
+                playerHealth = playerHealth ?? Settings.playerHealth
             };
 
             ChangeSettings(caller, newSettings);

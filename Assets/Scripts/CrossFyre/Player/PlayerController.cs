@@ -1,4 +1,5 @@
 ﻿using CrossFyre.GameInput;
+using CrossFyre.GameSettings;
 using UnityEngine;
 
 namespace CrossFyre.Player
@@ -24,18 +25,34 @@ namespace CrossFyre.Player
             Health = GetComponent<HealthComponent>();
             inputProvider = GetComponent<PlayerInput>();
             rigidbody2D = GetComponent<Rigidbody2D>();
+
+            Health.SetMaxHealth(GameSettingsManager.Settings.playerHealth);
+            Health.ResetHealth();
         }
 
         private void OnEnable()
         {
-            Health.OnDeath.AddListener(Die);
+            Health.onDeath.AddListener(Die);
+            Health.onDeath.AddListener(TriggerDieEvent);
+            Health.onHealthChanged.AddListener(TriggerOnHealthChangedEvent);
             PlayerInput.InputChanged += ResolveInput;
         }
 
-
         private void OnDisable()
         {
-            Health.OnDeath.RemoveListener(Die);
+            Health.onDeath.RemoveListener(Die);
+            Health.onDeath.RemoveListener(TriggerDieEvent);
+            Health.onHealthChanged.RemoveListener(TriggerOnHealthChangedEvent);
+        }
+
+        private static void TriggerOnHealthChangedEvent(int health)
+        {
+            GameEvents.TriggerPlayerEvent(PlayerEvent.PlayerHealthChanged, health);
+        }
+
+        private static void TriggerDieEvent()
+        {
+            GameEvents.TriggerPlayerEvent(PlayerEvent.PlayerDied);
         }
 
         private void Start()

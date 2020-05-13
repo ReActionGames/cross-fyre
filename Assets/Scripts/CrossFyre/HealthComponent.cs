@@ -24,26 +24,36 @@ namespace CrossFyre
         }
 
         [Space]
-        public IntEvent OnHealthChanged = default;
+        public IntEvent onHealthChanged = default;
 
-        public UnityEvent OnDeath = default;
+        public UnityEvent onDeath = default;
+
+        private void Start()
+        {
+            onHealthChanged?.Invoke(_health);
+        }
 
         public void TakeDamage(int amount)
         {
             _health -= amount;
             _health = Mathf.Clamp(_health, _minHealth, _maxHealth);
 
-            OnHealthChanged?.Invoke(amount);
+            onHealthChanged?.Invoke(_health);
 
             if (_health <= _minHealth)
             {
-                OnDeath?.Invoke();
+                onDeath?.Invoke();
             }
         }
 
         public void ResetHealth()
         {
             _health = _maxHealth;
+        }
+
+        public void SetMaxHealth(int maxHealth)
+        {
+            _maxHealth = maxHealth;
         }
     }
 }

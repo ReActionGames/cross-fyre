@@ -33,12 +33,12 @@ namespace CrossFyre.Gun
 
         private void OnEnable()
         {
-            health.OnDeath.AddListener(Die);
+            health.onDeath.AddListener(Die);
         }
 
         private void OnDisable()
         {
-            health.OnDeath.RemoveListener(Die);
+            health.onDeath.RemoveListener(Die);
         }
 
         private void Die()

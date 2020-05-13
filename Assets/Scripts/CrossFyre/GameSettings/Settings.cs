@@ -13,6 +13,9 @@ namespace CrossFyre.GameSettings
         [TitleGroup("User Settings")]
         public bool lockJoystick;
 
+        [TitleGroup("Game Settings")] 
+        public int playerHealth;
+
         public override string ToString()
         {
             return JsonUtility.ToJson(this, true);

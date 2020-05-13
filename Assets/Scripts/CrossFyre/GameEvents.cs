@@ -10,12 +10,23 @@ namespace CrossFyre
         GameEnded
     }
 
+    public enum PlayerEvent
+    {
+        PlayerHealthChanged,
+        PlayerDied
+    }
+
     public static class GameEvents
     {
         // STANDARD EVENTS //
         public static event Action GameStarted;
         public static event Action GameEnded;
         public static event Action<StandardEvent> OnStandardEvent;
+        
+        // PLAYER EVENTS //
+        public static event Action<int> PlayerHealthChanged;
+        public static event Action PlayerDied;
+        public static event Action<PlayerEvent> OnPlayerEvent;
 
         public static void TriggerStandardEvent(StandardEvent standardEvent)
         {
@@ -33,5 +44,23 @@ namespace CrossFyre
             
             OnStandardEvent?.Invoke(standardEvent);
         }
+        public static void TriggerPlayerEvent(PlayerEvent playerEvent, int? health = null)
+        {
+            switch (playerEvent)
+            {
+                case PlayerEvent.PlayerHealthChanged:
+                    PlayerHealthChanged?.Invoke(health ?? 0);
+                    break;
+                case PlayerEvent.PlayerDied:
+                    PlayerDied?.Invoke();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(playerEvent), playerEvent, null);
+            }
+            
+            OnPlayerEvent?.Invoke(playerEvent);
+        }
+        
+        
     }
 }
