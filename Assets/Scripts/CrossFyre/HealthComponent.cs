@@ -49,6 +49,7 @@ namespace CrossFyre
         public void ResetHealth()
         {
             _health = _maxHealth;
+            onHealthChanged?.Invoke(_health);
         }
 
         public void SetMaxHealth(int maxHealth)
