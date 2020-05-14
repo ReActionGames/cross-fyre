@@ -1,13 +1,23 @@
-﻿using CrossFyre.GameInput;
+﻿using System;
+using CrossFyre.GameInput;
 using CrossFyre.GameSettings;
 using UnityEngine;
 
 namespace CrossFyre.Player
 {
+    [Serializable]
+    public struct PlayerState
+    {
+        public int health;
+        public bool dead;
+    }
+
     [RequireComponent(typeof(HealthComponent))]
     [RequireComponent(typeof(PlayerInput))]
     public class PlayerController : MonoBehaviour
     {
+        public PlayerState State => state;
+
         [SerializeField] private float fastSpeed = 6f;
         [SerializeField] private float slowSpeed = 4f;
         [SerializeField] private float acceleration = 20f;
@@ -16,6 +26,7 @@ namespace CrossFyre.Player
         private new Rigidbody2D rigidbody2D;
         private HealthComponent health;
 
+        private PlayerState state;
         private Vector2 inputCache = Vector2.zero;
         private float maxSpeed = 6f;
 
@@ -27,31 +38,31 @@ namespace CrossFyre.Player
 
             health.SetMaxHealth(GameSettingsManager.Settings.playerHealth);
             health.ResetHealth();
+
+            state = new PlayerState
+            {
+                health = health.Health,
+                dead = false
+            };
         }
 
         private void OnEnable()
         {
             health.onDeath.AddListener(Die);
-            health.onDeath.AddListener(TriggerDieEvent);
-            health.onHealthChanged.AddListener(TriggerOnHealthChangedEvent);
+            health.onHealthChanged.AddListener(OnHealthChanged);
             PlayerInput.InputChanged += ResolveInput;
         }
 
         private void OnDisable()
         {
             health.onDeath.RemoveListener(Die);
-            health.onDeath.RemoveListener(TriggerDieEvent);
-            health.onHealthChanged.RemoveListener(TriggerOnHealthChangedEvent);
+            health.onHealthChanged.RemoveListener(OnHealthChanged);
         }
 
-        private static void TriggerOnHealthChangedEvent(int health)
+        private void OnHealthChanged(int newHealth)
         {
-            GameEvents.TriggerPlayerEvent(PlayerEvent.PlayerHealthChanged, health);
-        }
-
-        private static void TriggerDieEvent()
-        {
-            GameEvents.TriggerPlayerEvent(PlayerEvent.PlayerDied);
+            state.health = newHealth;
+            GameEvents.TriggerPlayerEvent(PlayerEvent.PlayerHealthChanged, state);
         }
 
         private void Start()
@@ -61,6 +72,8 @@ namespace CrossFyre.Player
 
         private void Die()
         {
+            state.dead = true;
+            GameEvents.TriggerPlayerEvent(PlayerEvent.PlayerDied, state);
             GameEvents.TriggerStandardEvent(StandardEvent.GameEnded);
             Destroy(gameObject);
         }

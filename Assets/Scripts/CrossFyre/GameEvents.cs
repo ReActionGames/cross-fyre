@@ -1,4 +1,5 @@
 ﻿using System;
+using CrossFyre.Player;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -26,7 +27,7 @@ namespace CrossFyre
         // PLAYER EVENTS //
         public static event Action<int> PlayerHealthChanged;
         public static event Action PlayerDied;
-        public static event Action<PlayerEvent> OnPlayerEvent;
+        public static event Action<PlayerEvent, PlayerState> OnPlayerEvent;
 
         public static void TriggerStandardEvent(StandardEvent standardEvent)
         {
@@ -44,12 +45,12 @@ namespace CrossFyre
             
             OnStandardEvent?.Invoke(standardEvent);
         }
-        public static void TriggerPlayerEvent(PlayerEvent playerEvent, int? health = null)
+        public static void TriggerPlayerEvent(PlayerEvent playerEvent, PlayerState state)
         {
             switch (playerEvent)
             {
                 case PlayerEvent.PlayerHealthChanged:
-                    PlayerHealthChanged?.Invoke(health ?? 0);
+                    PlayerHealthChanged?.Invoke(state.health);
                     break;
                 case PlayerEvent.PlayerDied:
                     PlayerDied?.Invoke();
@@ -58,7 +59,7 @@ namespace CrossFyre
                     throw new ArgumentOutOfRangeException(nameof(playerEvent), playerEvent, null);
             }
             
-            OnPlayerEvent?.Invoke(playerEvent);
+            OnPlayerEvent?.Invoke(playerEvent, state);
         }
         
         
