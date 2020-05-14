@@ -1,19 +1,24 @@
-﻿using UnityEngine;
+﻿using System;
+using CrossFyre.Interfaces;
+using UnityEngine;
 
 namespace CrossFyre
 {
     public class MetaLevelResetter : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        private IResetable[] resetables;
+
+        private void Start()
         {
-        
+            resetables = this.FindMonoBehavioursOfInterface<IResetable>();
         }
 
-        // Update is called once per frame
-        void Update()
+        public void ResetMetaLevel()
         {
-        
+            foreach (var resetable in resetables)
+            {
+                resetable.ResetObject();
+            }
         }
     }
 }
