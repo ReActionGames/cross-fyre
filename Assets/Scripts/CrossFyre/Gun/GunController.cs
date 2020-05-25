@@ -17,7 +17,7 @@ namespace CrossFyre.Gun
         private HealthComponent health;
         private PlayerController player;
         private MonoFlash flasher;
-        
+
         private void Awake()
         {
             health = GetComponent<HealthComponent>();
@@ -28,6 +28,7 @@ namespace CrossFyre.Gun
         private void OnEnable()
         {
             health.onDeath.AddListener(Die);
+            LookAtCenter();
         }
 
         private void OnDisable()
@@ -39,6 +40,11 @@ namespace CrossFyre.Gun
         {
             OnDeath?.Invoke(this);
             LeanPool.Despawn(gameObject);
+        }
+
+        private void LookAtCenter()
+        {
+            transform.right = Vector3.Lerp(transform.right, Vector3.zero - transform.position, 1f);
         }
 
         public void LookAtPlayer()
