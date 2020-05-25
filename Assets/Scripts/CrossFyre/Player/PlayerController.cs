@@ -57,6 +57,7 @@ namespace CrossFyre.Player
         {
             health.onDeath.RemoveListener(Die);
             health.onHealthChanged.RemoveListener(OnHealthChanged);
+            PlayerInput.InputChanged -= ResolveInput;
         }
 
         private void OnHealthChanged(int newHealth)
@@ -70,12 +71,19 @@ namespace CrossFyre.Player
             transform.position = inputProvider.GetInitialPosition();
         }
 
+        public void ResetState()
+        {
+            transform.position = inputProvider.GetInitialPosition();
+            state.dead = false;
+            health.ResetHealth();
+        }
+
         private void Die()
         {
             state.dead = true;
             GameEvents.TriggerPlayerEvent(PlayerEvent.PlayerDied, state);
             GameEvents.TriggerStandardEvent(StandardEvent.GameEnded);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
 
         private void ResolveInput(InputData data)
