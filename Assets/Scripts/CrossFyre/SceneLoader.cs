@@ -80,7 +80,19 @@ namespace CrossFyre
 
         public void RestartArena()
         {
-            LoadArena(currentArena);
+            // LoadArena(currentArena);
+            FindObjectOfType<MetaLevelResetter>().ResetMetaLevel();
+
+            StartCoroutine(RestartArenaAsync());
+        }
+
+        private IEnumerator RestartArenaAsync()
+        {
+            data.arenaSceneNames.TryGetValue(currentArena, out var arenaName);
+            yield return SceneManager.UnloadSceneAsync(arenaName);
+            yield return SceneManager.LoadSceneAsync(arenaName, LoadSceneMode.Additive);
+
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(arenaName));
         }
 
         private IEnumerator UnloadAllScenesExceptPersistent()

@@ -1,15 +1,16 @@
-﻿using CrossFyre.Player;
+﻿using CrossFyre.Interfaces;
+using CrossFyre.Player;
 using UnityEngine;
 
 namespace CrossFyre.UI
 {
-    public class UiRestartText : MonoBehaviour
+    public class UiRestartText : MonoBehaviour, IResetable
     {
         [SerializeField] private RectTransform text = default;
 
         private void Start()
         {
-            text.gameObject.SetActive(false);
+            ResetObject();
         }
 
         private void OnEnable()
@@ -25,6 +26,11 @@ namespace CrossFyre.UI
         private void ActivateText()
         {
             text.gameObject.SetActive(true);
+        }
+
+        public void ResetObject()
+        {
+            text.gameObject.SetActive(false);
         }
     }
 }
