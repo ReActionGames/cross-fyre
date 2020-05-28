@@ -11,6 +11,14 @@ namespace CrossFyre
         GameEnded
     }
 
+    public enum LevelEvent
+    {
+        LevelStarted,
+        WaveStarted,
+        WaveEnded,
+        LevelEnded
+    }
+
     public enum PlayerEvent
     {
         PlayerHealthChanged,
@@ -23,12 +31,21 @@ namespace CrossFyre
         public static event Action GameStarted;
         public static event Action GameEnded;
         public static event Action<StandardEvent> OnStandardEvent;
-        
+
+        // LEVEL EVENTS //
+        public static event Action LevelStarted;
+        public static event Action WaveStarted;
+        public static event Action WaveEnded;
+        public static event Action LevelEnded;
+        public static event Action<LevelEvent> OnLevelEvent;
+
         // PLAYER EVENTS //
         public static event Action<int> PlayerHealthChanged;
         public static event Action PlayerDied;
         public static event Action<PlayerEvent, PlayerState> OnPlayerEvent;
 
+
+        // Trigger Methods //
         public static void TriggerStandardEvent(StandardEvent standardEvent)
         {
             switch (standardEvent)
@@ -42,9 +59,10 @@ namespace CrossFyre
                 default:
                     throw new ArgumentOutOfRangeException(nameof(standardEvent), standardEvent, null);
             }
-            
+
             OnStandardEvent?.Invoke(standardEvent);
         }
+
         public static void TriggerPlayerEvent(PlayerEvent playerEvent, PlayerState state)
         {
             switch (playerEvent)
@@ -58,10 +76,31 @@ namespace CrossFyre
                 default:
                     throw new ArgumentOutOfRangeException(nameof(playerEvent), playerEvent, null);
             }
-            
+
             OnPlayerEvent?.Invoke(playerEvent, state);
         }
         
-        
+        public static void TriggerLevelEvent(LevelEvent levelEvent)
+        {
+            switch (levelEvent)
+            {
+                case LevelEvent.LevelStarted:
+                    LevelStarted?.Invoke();
+                    break;
+                case LevelEvent.WaveStarted:
+                    WaveStarted?.Invoke();
+                    break;
+                case LevelEvent.WaveEnded:
+                    WaveEnded?.Invoke();
+                    break;
+                case LevelEvent.LevelEnded:
+                    LevelEnded?.Invoke();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(levelEvent), levelEvent, null);
+            }
+
+            OnLevelEvent?.Invoke(levelEvent);
+        }
     }
 }
