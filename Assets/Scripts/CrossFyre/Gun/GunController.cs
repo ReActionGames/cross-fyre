@@ -42,6 +42,11 @@ namespace CrossFyre.Gun
             LeanPool.Despawn(gameObject);
         }
 
+        public void SelfDestruct()
+        {
+            Die();
+        }
+
         private void LookAtCenter()
         {
             transform.right = Vector3.Lerp(transform.right, Vector3.zero - transform.position, 1f);

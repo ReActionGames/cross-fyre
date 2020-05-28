@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using CrossFyre.Gun;
 using Lean.Pool;
 using UnityEditor;
@@ -34,6 +35,8 @@ namespace CrossFyre.Level
         private int currentWave;
         private int gunsLeftInWave;
         private int gunsLeftInLevel;
+
+        private List<GunController> spawnedGuns = new List<GunController>(15);
 
         private void OnEnable()
         {
@@ -72,20 +75,31 @@ namespace CrossFyre.Level
         {
             GameEvents.TriggerLevelEvent(LevelEvent.WaveStarted);
 
+            spawnedGuns.Clear();
+
             gunsLeftInWave = wave.totalGuns;
             yield return new WaitForSeconds(wave.Delay);
 
             foreach (var node in wave.Nodes)
             {
                 yield return new WaitForSeconds(node.delay);
-                LeanPool.Spawn(node.gun, node.spawnPoint, Quaternion.identity);
+                var gun = LeanPool.Spawn(node.gun, node.spawnPoint, Quaternion.identity);
+                spawnedGuns.Add(gun);
             }
         }
 
         private void OnGunDeath(GunController gun)
         {
+            spawnedGuns.Remove(gun);
+
             gunsLeftInLevel--;
             gunsLeftInWave--;
+
+            if (gunsLeftInWave == 1)
+            {
+                spawnedGuns.FirstOrDefault()?.SelfDestruct();
+                return;
+            }
 
             if (gunsLeftInWave > 0) return;
 

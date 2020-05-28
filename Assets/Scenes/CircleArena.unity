@@ -922,6 +922,14 @@ MonoBehaviour:
     - delay: 1
       gun: {fileID: 5755385649324864848, guid: 1ff9e7f33410fc1458adccbe34439402, type: 3}
       spawnPoint: {x: 0, y: -5, z: 0}
+  - delay: 1
+    nodes:
+    - delay: 0
+      gun: {fileID: 5755385649324864848, guid: 1ff9e7f33410fc1458adccbe34439402, type: 3}
+      spawnPoint: {x: -3, y: 4, z: 0}
+    - delay: 1
+      gun: {fileID: 5755385649324864848, guid: 1ff9e7f33410fc1458adccbe34439402, type: 3}
+      spawnPoint: {x: 3, y: -4, z: 0}
 --- !u!4 &1194545541
 Transform:
   m_ObjectHideFlags: 0
