@@ -1,36 +1,17 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using CrossFyre.Gun;
 using Lean.Pool;
-using UnityEditor;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace CrossFyre.Level
 {
-    [Serializable]
-    public struct Node
-    {
-        public float delay;
-        public GunController gun;
-        public Vector3 spawnPoint;
-    }
-
-    [Serializable]
-    public class Wave
-    {
-        public Node[] Nodes => nodes;
-        public float Delay => delay;
-        public int totalGuns => nodes.Length;
-
-        [SerializeField] private float delay = 1f;
-        [SerializeField] private Node[] nodes;
-    }
-
     public class LevelManager : MonoBehaviour
     {
-        [SerializeField] private Wave[] waves;
+        [InlineEditor(Expanded = true)]
+        [SerializeField] private LevelData currentLevel;
 
         private int currentWave;
         private int gunsLeftInWave;
@@ -57,18 +38,18 @@ namespace CrossFyre.Level
         {
             GameEvents.TriggerLevelEvent(LevelEvent.LevelStarted);
 
-            if (waves.Length <= 0)
+            if (currentLevel.Waves.Length <= 0)
             {
                 GameEvents.TriggerLevelEvent(LevelEvent.LevelEnded);
                 return;
             }
 
             var totalGuns = 0;
-            waves.ForEach(wave => totalGuns += wave.totalGuns);
+            currentLevel.Waves.ForEach(wave => totalGuns += wave.TotalGuns);
             gunsLeftInLevel = totalGuns;
 
             currentWave = 0;
-            StartCoroutine(SpawnWaveAsync(waves[currentWave]));
+            StartCoroutine(SpawnWaveAsync(currentLevel.Waves[currentWave]));
         }
 
         private IEnumerator SpawnWaveAsync(Wave wave)
@@ -77,7 +58,7 @@ namespace CrossFyre.Level
 
             spawnedGuns.Clear();
 
-            gunsLeftInWave = wave.totalGuns;
+            gunsLeftInWave = wave.TotalGuns;
             yield return new WaitForSeconds(wave.Delay);
 
             foreach (var node in wave.Nodes)
@@ -111,9 +92,9 @@ namespace CrossFyre.Level
         {
             currentWave++;
 
-            if (currentWave < waves.Length)
+            if (currentWave < currentLevel.Waves.Length)
             {
-                StartCoroutine(SpawnWaveAsync(waves[currentWave]));
+                StartCoroutine(SpawnWaveAsync(currentLevel.Waves[currentWave]));
                 return;
             }
 
@@ -124,8 +105,10 @@ namespace CrossFyre.Level
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
+            if (currentLevel == null) return;
+            
             Gizmos.color = Color.green;
-            foreach (var wave in waves)
+            foreach (var wave in currentLevel.Waves)
             {
                 foreach (var node in wave.Nodes)
                 {
