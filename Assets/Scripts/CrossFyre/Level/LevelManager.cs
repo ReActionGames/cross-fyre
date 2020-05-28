@@ -47,7 +47,18 @@ namespace CrossFyre.Level
 
         private void Start()
         {
-            if (waves.Length <= 0) return;
+            StartLevel();
+        }
+
+        private void StartLevel()
+        {
+            GameEvents.TriggerLevelEvent(LevelEvent.LevelStarted);
+
+            if (waves.Length <= 0)
+            {
+                GameEvents.TriggerLevelEvent(LevelEvent.LevelEnded);
+                return;
+            }
 
             var totalGuns = 0;
             waves.ForEach(wave => totalGuns += wave.totalGuns);
@@ -59,6 +70,8 @@ namespace CrossFyre.Level
 
         private IEnumerator SpawnWaveAsync(Wave wave)
         {
+            GameEvents.TriggerLevelEvent(LevelEvent.WaveStarted);
+
             gunsLeftInWave = wave.totalGuns;
             yield return new WaitForSeconds(wave.Delay);
 
@@ -74,10 +87,10 @@ namespace CrossFyre.Level
             gunsLeftInLevel--;
             gunsLeftInWave--;
 
-            if (gunsLeftInWave <= 0)
-            {
-                StartNextWaveOrEndLevel();
-            }
+            if (gunsLeftInWave > 0) return;
+
+            GameEvents.TriggerLevelEvent(LevelEvent.WaveEnded);
+            StartNextWaveOrEndLevel();
         }
 
         private void StartNextWaveOrEndLevel()
@@ -91,7 +104,7 @@ namespace CrossFyre.Level
             }
 
             Debug.Log("End Level!!");
-            GameEvents.TriggerStandardEvent(StandardEvent.GameEnded);
+            GameEvents.TriggerLevelEvent(LevelEvent.LevelEnded);
         }
 
 #if UNITY_EDITOR

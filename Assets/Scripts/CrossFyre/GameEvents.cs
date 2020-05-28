@@ -46,6 +46,16 @@ namespace CrossFyre
 
 
         // Trigger Methods //
+
+
+        // public static void TriggerEvent(Enum gameEvent) 
+        // {
+        //     if (gameEvent is StandardEvent)
+        //     {
+        //         Debug.Log("standard event: ", gameEvent);
+        //     }
+        // }
+
         public static void TriggerStandardEvent(StandardEvent standardEvent)
         {
             switch (standardEvent)
@@ -79,7 +89,7 @@ namespace CrossFyre
 
             OnPlayerEvent?.Invoke(playerEvent, state);
         }
-        
+
         public static void TriggerLevelEvent(LevelEvent levelEvent)
         {
             switch (levelEvent)
