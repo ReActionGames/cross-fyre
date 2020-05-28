@@ -10,8 +10,8 @@ namespace CrossFyre.Level
 {
     public class LevelManager : MonoBehaviour
     {
-        [InlineEditor(Expanded = true)]
-        [SerializeField] private LevelData currentLevel;
+        [InlineEditor(Expanded = true)] [SerializeField]
+        private LevelData currentLevel;
 
         private int currentWave;
         private int gunsLeftInWave;
@@ -29,13 +29,11 @@ namespace CrossFyre.Level
             GunController.OnDeath -= OnGunDeath;
         }
 
-        private void Start()
-        {
-            StartLevel();
-        }
 
-        private void StartLevel()
+        public void StartLevel(LevelData level)
         {
+            currentLevel = level;
+
             GameEvents.TriggerLevelEvent(LevelEvent.LevelStarted);
 
             if (currentLevel.Waves.Length <= 0)
@@ -78,7 +76,7 @@ namespace CrossFyre.Level
 
             if (gunsLeftInWave == 1)
             {
-                spawnedGuns.FirstOrDefault()?.SelfDestruct();
+                spawnedGuns[spawnedGuns.Count - 1].SelfDestruct();
                 return;
             }
 
@@ -106,7 +104,7 @@ namespace CrossFyre.Level
         private void OnDrawGizmos()
         {
             if (currentLevel == null) return;
-            
+
             Gizmos.color = Color.green;
             foreach (var wave in currentLevel.Waves)
             {

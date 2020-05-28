@@ -13,6 +13,7 @@ namespace CrossFyre
 
     public enum LevelEvent
     {
+        LevelSceneReady,
         LevelStarted,
         WaveStarted,
         WaveEnded,
@@ -33,6 +34,7 @@ namespace CrossFyre
         public static event Action<StandardEvent> OnStandardEvent;
 
         // LEVEL EVENTS //
+        public static event Action LevelSceneReady;
         public static event Action LevelStarted;
         public static event Action WaveStarted;
         public static event Action WaveEnded;
@@ -105,6 +107,9 @@ namespace CrossFyre
                     break;
                 case LevelEvent.LevelEnded:
                     LevelEnded?.Invoke();
+                    break;
+                case LevelEvent.LevelSceneReady:
+                    LevelSceneReady?.Invoke();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(levelEvent), levelEvent, null);
