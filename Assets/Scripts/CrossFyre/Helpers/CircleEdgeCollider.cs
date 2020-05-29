@@ -1,7 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace CrossFyre
+namespace CrossFyre.Helpers
 {
     [RequireComponent(typeof(EdgeCollider2D))]
     public class CircleEdgeCollider : MonoBehaviour

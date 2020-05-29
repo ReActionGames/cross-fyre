@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CrossFyre
+namespace CrossFyre.Helpers
 {
     public class SelfDestruct : MonoBehaviour
     {

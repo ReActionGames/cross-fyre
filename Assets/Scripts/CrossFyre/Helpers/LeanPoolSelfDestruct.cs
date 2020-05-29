@@ -1,7 +1,7 @@
 ﻿using Lean.Pool;
 using UnityEngine;
 
-namespace CrossFyre
+namespace CrossFyre.Helpers
 {
     public class LeanPoolSelfDestruct : MonoBehaviour, IPoolable
     {

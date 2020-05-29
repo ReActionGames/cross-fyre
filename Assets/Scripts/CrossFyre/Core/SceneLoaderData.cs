@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sirenix.OdinInspector;
 
-namespace CrossFyre
+namespace CrossFyre.Core
 {
     public class SceneLoaderData : SerializedScriptableObject
     {

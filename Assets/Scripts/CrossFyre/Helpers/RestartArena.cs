@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using CrossFyre.Core;
+using UnityEngine;
 
-namespace CrossFyre
+namespace CrossFyre.Helpers
 {
     public class RestartArena : MonoBehaviour
     {

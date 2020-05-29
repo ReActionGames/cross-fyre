@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using CrossFyre.GameSettings;
+using CrossFyre.Helpers;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace CrossFyre
+namespace CrossFyre.Core
 {
     public enum Arena
     {

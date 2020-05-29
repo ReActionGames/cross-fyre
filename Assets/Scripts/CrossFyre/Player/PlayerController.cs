@@ -1,4 +1,5 @@
 ﻿using System;
+using CrossFyre.Core;
 using CrossFyre.GameInput;
 using CrossFyre.GameSettings;
 using UnityEngine;

@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace CrossFyre
+namespace CrossFyre.Helpers
 {
     public class CoroutineHelper : MonoBehaviourSingleton<CoroutineHelper>
     {

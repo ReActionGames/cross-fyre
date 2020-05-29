@@ -1,8 +1,7 @@
-﻿using System;
-using CrossFyre.Level;
+﻿using CrossFyre.Level;
 using UnityEngine;
 
-namespace CrossFyre
+namespace CrossFyre.Core
 {
     public class GameManager : MonoBehaviour
     {

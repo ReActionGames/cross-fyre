@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using CrossFyre.Core;
 using CrossFyre.Gun;
 using Lean.Pool;
 using Sirenix.OdinInspector;

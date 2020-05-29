@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-namespace CrossFyre
+namespace CrossFyre.Helpers
 {
     [RequireComponent(typeof(Camera))]
     public class CameraResizer : MonoBehaviour

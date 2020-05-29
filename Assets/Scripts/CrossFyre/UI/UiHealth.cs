@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using CrossFyre.Core;
 using CrossFyre.GameSettings;
 using CrossFyre.Player;
 using UnityEngine;

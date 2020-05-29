@@ -1,9 +1,7 @@
 ﻿using System;
 using CrossFyre.Player;
-using Sirenix.OdinInspector;
-using UnityEngine;
 
-namespace CrossFyre
+namespace CrossFyre.Core
 {
     public enum StandardEvent
     {

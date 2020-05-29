@@ -1,8 +1,7 @@
-﻿using System;
-using CrossFyre.Interfaces;
+﻿using CrossFyre.Interfaces;
 using UnityEngine;
 
-namespace CrossFyre
+namespace CrossFyre.Core
 {
     public class MetaLevelResetter : MonoBehaviour
     {

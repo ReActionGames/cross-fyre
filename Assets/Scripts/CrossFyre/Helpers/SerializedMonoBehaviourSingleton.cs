@@ -1,7 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace CrossFyre
+namespace CrossFyre.Helpers
 {
     public class SerializedMonoBehaviourSingleton<TSelfType> : SerializedMonoBehaviour
         where TSelfType : SerializedMonoBehaviour
