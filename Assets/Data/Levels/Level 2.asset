@@ -18,10 +18,10 @@ MonoBehaviour:
     nodes:
     - delay: 0
       gun: {fileID: 5755385649324864848, guid: 1ff9e7f33410fc1458adccbe34439402, type: 3}
-      spawnPoint: {x: 0, y: 5, z: 0}
+      spawnPoint: {x: 0, y: 3, z: 0}
     - delay: 1
       gun: {fileID: 5755385649324864848, guid: 1ff9e7f33410fc1458adccbe34439402, type: 3}
-      spawnPoint: {x: 2.85, y: -4.14, z: 0}
+      spawnPoint: {x: 2.45, y: -2.45, z: 0}
     - delay: 0
       gun: {fileID: 5755385649324864848, guid: 1ff9e7f33410fc1458adccbe34439402, type: 3}
-      spawnPoint: {x: -2.85, y: -4.14, z: 0}
+      spawnPoint: {x: -2.45, y: -2.45, z: 0}

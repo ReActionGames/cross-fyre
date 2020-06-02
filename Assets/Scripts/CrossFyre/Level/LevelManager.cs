@@ -11,6 +11,8 @@ namespace CrossFyre.Level
 {
     public class LevelManager : MonoBehaviour
     {
+        public float Progress => (float)gunsLeftInLevel / currentLevel.TotalGuns;
+
         [InlineEditor(Expanded = true)] [SerializeField]
         private LevelData currentLevel;
 
@@ -43,9 +45,7 @@ namespace CrossFyre.Level
                 return;
             }
 
-            var totalGuns = 0;
-            currentLevel.Waves.ForEach(wave => totalGuns += wave.TotalGuns);
-            gunsLeftInLevel = totalGuns;
+            gunsLeftInLevel = currentLevel.TotalGuns;
 
             currentWave = 0;
             StartCoroutine(SpawnWaveAsync(currentLevel.Waves[currentWave]));
