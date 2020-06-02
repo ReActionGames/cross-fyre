@@ -14,12 +14,14 @@ namespace CrossFyre.Gun
         [SerializeField] private Transform firePoint = null;
         [SerializeField] private Transform projectilePrefab = null;
 
+        private GunStateMachine stateMachine;
         private HealthComponent health;
         private PlayerController player;
         private MonoFlash flasher;
 
         private void Awake()
         {
+            stateMachine = GetComponent<GunStateMachine>();
             health = GetComponent<HealthComponent>();
             player = FindObjectOfType<PlayerController>();
             flasher = GetComponent<MonoFlash>();
@@ -76,6 +78,7 @@ namespace CrossFyre.Gun
 
         public void OnSpawn()
         {
+            stateMachine.ResetState();
             health.ResetHealth();
         }
 
