@@ -26,9 +26,10 @@ namespace CrossFyre.Gun
             controller = GetComponent<GunController>();
         }
 
-        private void Start()
+        public void ResetState()
         {
             state = State.Patrol;
+            timeCounter = 0;
         }
 
         private void Update()
