@@ -138,8 +138,6 @@ MonoBehaviour:
   firePoint: {fileID: 8936111597054738108}
   projectilePrefab: {fileID: 4076663627557502, guid: c3042f1fa2f44b847acc7800b19f7fdd,
     type: 3}
-  flashDuration: 0.2
-  flashColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!58 &7661212260172344486
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -237,13 +235,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7855ac69b4e4d954a8d18fb71122eb4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 2
-  _maxHealth: 2
+  _health: 1
+  _maxHealth: 1
   _minHealth: 0
-  OnHealthChanged:
+  onHealthChanged:
     m_PersistentCalls:
       m_Calls: []
-  OnDeath:
+  onDeath:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &8616555195983261073
