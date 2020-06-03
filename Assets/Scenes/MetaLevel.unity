@@ -1618,13 +1618,13 @@ MonoBehaviour:
   elementName: Level Message
   LANDSCAPE: 1
   PORTRAIT: 1
-  startHidden: 0
+  startHidden: 1
   animateAtStart: 0
   disableWhenHidden: 0
   dontDisableCanvasWhenHidden: 0
   disableGraphicRaycaster: 0
-  autoHide: 0
-  autoHideDelay: 0.2
+  autoHide: 1
+  autoHideDelay: 0
   useCustomStartAnchoredPosition: 1
   customStartAnchoredPosition: {x: 0, y: 0, z: 0}
   executeLayoutFix: 0
@@ -2805,8 +2805,8 @@ MonoBehaviour:
   disableWhenHidden: 0
   dontDisableCanvasWhenHidden: 0
   disableGraphicRaycaster: 0
-  autoHide: 0
-  autoHideDelay: 0.2
+  autoHide: 1
+  autoHideDelay: 0
   useCustomStartAnchoredPosition: 1
   customStartAnchoredPosition: {x: 0, y: 0, z: 0}
   executeLayoutFix: 0
@@ -3141,7 +3141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca028a03d9998a45aa9107273e50ac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messageElement: {fileID: 1327634554}
+  elementCategory: MetaLevel
+  elementName: Level Message
   levelText: {fileID: 860364037}
   prefix: 'Level '
   suffix: 
