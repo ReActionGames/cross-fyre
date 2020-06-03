@@ -53,14 +53,21 @@ MonoBehaviour:
         m_Target: 0
         speed: 2
         m_Value: 0
+    - categoryName: MetaLevel
+      itemNames:
+      - Level Message
+      isExpanded:
+        m_Target: 1
+        speed: 2
+        m_Value: 1
     - categoryName: TestMenu
       itemNames:
       - Base Menu
       - Settings
       isExpanded:
-        m_Target: 1
+        m_Target: 0
         speed: 2
-        m_Value: 1
+        m_Value: 0
     - categoryName: Uncategorized
       itemNames:
       - ~Element Name~
@@ -74,6 +81,7 @@ MonoBehaviour:
     - Example 2 - OrientationManager
     - Example 3 - Buttons
     - Example 4 - Simple UI
+    - MetaLevel
     - TestMenu
     - Uncategorized
   DatabaseUIButtons:
@@ -109,6 +117,7 @@ MonoBehaviour:
     - Uncategorized
   DatabaseUICanvases:
   - MasterCanvas
+  - UI Canvas
   DatabaseUISounds:
     sounds:
     - {fileID: 11400000, guid: 59de0091c9523d146a71bf3e2f187753, type: 2}
@@ -200,9 +209,9 @@ MonoBehaviour:
       - SubsideRight
       - SubsideVertical
       isExpanded:
-        m_Target: 1
+        m_Target: 0
         speed: 2
-        m_Value: 1
+        m_Value: 0
     - categoryName: Drop
       presets:
       - {fileID: 11400000, guid: fed27f3eda97fbd4db77ed7461aa5c32, type: 2}
@@ -346,9 +355,9 @@ MonoBehaviour:
       - SlenderRight
       - SlenderUp
       isExpanded:
-        m_Target: 0
+        m_Target: 1
         speed: 2
-        m_Value: 0
+        m_Value: 1
     - categoryName: Slide
       presets:
       - {fileID: 11400000, guid: a0fdb12db8f7b334b8a8ca73ea249d4d, type: 2}

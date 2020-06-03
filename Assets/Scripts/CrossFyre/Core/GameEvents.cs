@@ -1,4 +1,5 @@
 ﻿using System;
+using CrossFyre.Level;
 using CrossFyre.Player;
 
 namespace CrossFyre.Core
@@ -33,11 +34,11 @@ namespace CrossFyre.Core
 
         // LEVEL EVENTS //
         public static event Action LevelSceneReady;
-        public static event Action LevelStarted;
+        public static event Action<LevelData> LevelStarted;
         public static event Action WaveStarted;
         public static event Action WaveEnded;
-        public static event Action LevelEnded;
-        public static event Action<LevelEvent> OnLevelEvent;
+        public static event Action<LevelData> LevelEnded;
+        public static event Action<LevelEvent, LevelData> OnLevelEvent;
 
         // PLAYER EVENTS //
         public static event Action<int> PlayerHealthChanged;
@@ -90,12 +91,12 @@ namespace CrossFyre.Core
             OnPlayerEvent?.Invoke(playerEvent, state);
         }
 
-        public static void TriggerLevelEvent(LevelEvent levelEvent)
+        public static void TriggerLevelEvent(LevelEvent levelEvent, LevelData data)
         {
             switch (levelEvent)
             {
                 case LevelEvent.LevelStarted:
-                    LevelStarted?.Invoke();
+                    LevelStarted?.Invoke(data);
                     break;
                 case LevelEvent.WaveStarted:
                     WaveStarted?.Invoke();
@@ -104,7 +105,7 @@ namespace CrossFyre.Core
                     WaveEnded?.Invoke();
                     break;
                 case LevelEvent.LevelEnded:
-                    LevelEnded?.Invoke();
+                    LevelEnded?.Invoke(data);
                     break;
                 case LevelEvent.LevelSceneReady:
                     LevelSceneReady?.Invoke();
@@ -113,7 +114,7 @@ namespace CrossFyre.Core
                     throw new ArgumentOutOfRangeException(nameof(levelEvent), levelEvent, null);
             }
 
-            OnLevelEvent?.Invoke(levelEvent);
+            OnLevelEvent?.Invoke(levelEvent, data);
         }
     }
 }

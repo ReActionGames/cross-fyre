@@ -26,7 +26,7 @@ namespace CrossFyre.UI
             GameEvents.LevelStarted -= StartTrackingProgress;
         }
 
-        private void StartTrackingProgress()
+        private void StartTrackingProgress(LevelData data)
         {
             levelManager = FindObjectOfType<LevelManager>();
             levelStarted = true;

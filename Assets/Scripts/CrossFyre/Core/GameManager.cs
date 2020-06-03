@@ -49,7 +49,7 @@ namespace CrossFyre.Core
             levelManager.StartLevel(levels[currentLevel]);
         }
 
-        private void StartNextLevelOrEndGame()
+        private void StartNextLevelOrEndGame(LevelData data)
         {
             currentLevel++;
 
