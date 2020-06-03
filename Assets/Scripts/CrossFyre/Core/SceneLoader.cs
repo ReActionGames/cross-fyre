@@ -57,7 +57,7 @@ namespace CrossFyre.Core
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(arenaName));
             currentArena = arena;
 
-            GameEvents.TriggerLevelEvent(LevelEvent.LevelSceneReady);
+            GameEvents.TriggerLevelEvent(LevelEvent.LevelSceneReady, null);
         }
 
         public void LoadOtherScene(OtherScene scene)
@@ -97,7 +97,7 @@ namespace CrossFyre.Core
 
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(arenaName));
 
-            GameEvents.TriggerLevelEvent(LevelEvent.LevelSceneReady);
+            GameEvents.TriggerLevelEvent(LevelEvent.LevelSceneReady, null);
         }
 
         private IEnumerator UnloadAllScenesExceptPersistent()
