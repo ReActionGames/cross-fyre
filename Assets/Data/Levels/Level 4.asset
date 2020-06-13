@@ -10,15 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 870a3da6fb354bdcae28f92b4469ac34, type: 3}
-  m_Name: Level 2
+  m_Name: Level 4
   m_EditorClassIdentifier: 
-  levelNumber: 2
+  levelNumber: 4
   waves:
   - delay: 1
     nodes:
     - delay: 0
       gun: {fileID: 5755385649324864848, guid: 1ff9e7f33410fc1458adccbe34439402, type: 3}
-      spawnPoint: {x: 3, y: 0, z: 0}
+      spawnPoint: {x: 0, y: 3, z: 0}
+    - delay: 1
+      gun: {fileID: 5755385649324864848, guid: 1ff9e7f33410fc1458adccbe34439402, type: 3}
+      spawnPoint: {x: 2.45, y: -2.45, z: 0}
     - delay: 0
       gun: {fileID: 5755385649324864848, guid: 1ff9e7f33410fc1458adccbe34439402, type: 3}
-      spawnPoint: {x: -3, y: 0, z: 0}
+      spawnPoint: {x: -2.45, y: -2.45, z: 0}
