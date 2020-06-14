@@ -1,7 +1,7 @@
 ﻿using System;
 using CrossFyre.Core;
 using CrossFyre.Level;
-using DoozyUI;
+// using DoozyUI;
 using TMPro;
 using UnityEngine;
 
@@ -17,7 +17,7 @@ namespace CrossFyre.UI
 
         private void Start()
         {
-            UIManager.HideUiElement(elementName, elementCategory, true);
+            // UIManager.HideUiElement(elementName, elementCategory, true);
             // messageElement.Hide(true);
             // messageElement.AutoHide(true, 0.1f);            
         }
@@ -36,7 +36,7 @@ namespace CrossFyre.UI
         {
             levelText.text = prefix + data.LevelNumber + suffix;
             // messageElement.Show(false);
-            UIManager.ShowUiElement(elementName, elementCategory);
+            // UIManager.ShowUiElement(elementName, elementCategory);
         }
     }
 }

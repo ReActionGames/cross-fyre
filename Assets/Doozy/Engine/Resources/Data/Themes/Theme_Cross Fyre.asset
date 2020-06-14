@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a151aae416b497c9eaea8aa5ac1c555, type: 3}
+  m_Name: Theme_Cross Fyre
+  m_EditorClassIdentifier: 
+  m_themeName: Cross Fyre
+  SerializedGuid: 31f8647c38886e44b53ce397d6af9aa5
+  m_activeVariant:
+    m_variantName: Default
+    SerializedGuid: b0b28b1911414c4eb2a8e0713f17c70c
+    Colors:
+    - m_color: {r: 1, g: 1, b: 1, a: 1}
+      SerializedGuid: c44d6dc68f7ea84ea7623dd59ec88839
+    - m_color: {r: 1, g: 1, b: 1, a: 1}
+      SerializedGuid: 51a62a0b2475404fae3a5cffaf4a7e4d
+    - m_color: {r: 1, g: 1, b: 1, a: 1}
+      SerializedGuid: 616ec3de5b88ec419255af74251af485
+    - m_color: {r: 1, g: 1, b: 1, a: 1}
+      SerializedGuid: 1df843998878094d82423217ce7a1e21
+    - m_color: {r: 1, g: 1, b: 1, a: 1}
+      SerializedGuid: a02541a3229111409d80482c31f4a162
+    - m_color: {r: 1, g: 1, b: 1, a: 1}
+      SerializedGuid: 585e71e435f6664fb990bb1c68a542f6
+    Sprites: []
+    Textures: []
+    Fonts:
+    - m_font: {fileID: 12800000, guid: 5997fe0be3eb5fd40810e50d6cabb652, type: 3}
+      SerializedGuid: d7eefb58c8d4d840a8abcb757bb936ab
+    FontAssets:
+    - m_fontAsset: {fileID: 11400000, guid: 4bd810f1cbcb0f446a8f5a31453e243f, type: 2}
+      SerializedGuid: cfc0fdae08e3734e8e3c83f607b0bedd
+  ColorLabels:
+  - m_label: Primary
+    SerializedGuid: c44d6dc68f7ea84ea7623dd59ec88839
+  - m_label: Secondary
+    SerializedGuid: 51a62a0b2475404fae3a5cffaf4a7e4d
+  - m_label: Accent 1
+    SerializedGuid: 616ec3de5b88ec419255af74251af485
+  - m_label: Accent 2
+    SerializedGuid: 1df843998878094d82423217ce7a1e21
+  - m_label: Text
+    SerializedGuid: a02541a3229111409d80482c31f4a162
+  - m_label: Disabled
+    SerializedGuid: 585e71e435f6664fb990bb1c68a542f6
+  SpriteLabels: []
+  TextureLabels: []
+  FontLabels:
+  - m_label: Main
+    SerializedGuid: d7eefb58c8d4d840a8abcb757bb936ab
+  FontAssetLabels:
+  - m_label: Main
+    SerializedGuid: cfc0fdae08e3734e8e3c83f607b0bedd
+  VariantsNames:
+  - Default
+  Variants:
+  - m_variantName: Default
+    SerializedGuid: b0b28b1911414c4eb2a8e0713f17c70c
+    Colors:
+    - m_color: {r: 1, g: 1, b: 1, a: 1}
+      SerializedGuid: c44d6dc68f7ea84ea7623dd59ec88839
+    - m_color: {r: 1, g: 1, b: 1, a: 1}
+      SerializedGuid: 51a62a0b2475404fae3a5cffaf4a7e4d
+    - m_color: {r: 1, g: 1, b: 1, a: 1}
+      SerializedGuid: 616ec3de5b88ec419255af74251af485
+    - m_color: {r: 1, g: 1, b: 1, a: 1}
+      SerializedGuid: 1df843998878094d82423217ce7a1e21
+    - m_color: {r: 1, g: 1, b: 1, a: 1}
+      SerializedGuid: a02541a3229111409d80482c31f4a162
+    - m_color: {r: 1, g: 1, b: 1, a: 1}
+      SerializedGuid: 585e71e435f6664fb990bb1c68a542f6
+    Sprites: []
+    Textures: []
+    Fonts:
+    - m_font: {fileID: 12800000, guid: 5997fe0be3eb5fd40810e50d6cabb652, type: 3}
+      SerializedGuid: d7eefb58c8d4d840a8abcb757bb936ab
+    FontAssets:
+    - m_fontAsset: {fileID: 11400000, guid: 4bd810f1cbcb0f446a8f5a31453e243f, type: 2}
+      SerializedGuid: cfc0fdae08e3734e8e3c83f607b0bedd
