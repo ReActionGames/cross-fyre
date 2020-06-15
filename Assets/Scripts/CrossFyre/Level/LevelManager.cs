@@ -11,7 +11,7 @@ namespace CrossFyre.Level
 {
     public class LevelManager : MonoBehaviour
     {
-        public float Progress => (float)gunsLeftInLevel / currentLevel.TotalGuns;
+        public float Progress => 1f - ((float) gunsLeftInLevel / currentLevel.TotalGuns);
 
         [InlineEditor(Expanded = true)] [SerializeField]
         private LevelData currentLevel;

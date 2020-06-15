@@ -1,6 +1,7 @@
 ﻿using System;
 using CrossFyre.Core;
 using CrossFyre.Level;
+using Doozy.Engine.Progress;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,9 +9,10 @@ namespace CrossFyre.UI
 {
     public class UiLevelProgression : MonoBehaviour
     {
-        [SerializeField] private Image sliderForeground;
-        [Range(0, 1)] [SerializeField] private float damping = 0.1f;
-        [Range(0, 1)] [SerializeField] private float startingFillAmount = 0.05f;
+        // [SerializeField] private Image sliderForeground;
+        [SerializeField] private Progressor progressor;
+        // [Range(0, 1)] [SerializeField] private float damping = 0.1f;
+        [Range(0, 1)] [SerializeField] private float startingValue = 0.05f;
 
         private LevelManager levelManager;
 
@@ -24,6 +26,7 @@ namespace CrossFyre.UI
         private void OnDisable()
         {
             GameEvents.LevelStarted -= StartTrackingProgress;
+            
         }
 
         private void StartTrackingProgress(LevelData data)
@@ -34,18 +37,24 @@ namespace CrossFyre.UI
 
         private void Start()
         {
-            sliderForeground.fillAmount = startingFillAmount;
+            // sliderForeground.fillAmount = startingValue;
+            progressor.SetValue(startingValue);
         }
 
         private void Update()
         {
             if (!levelStarted) return;
 
-            var fillAmount = sliderForeground.fillAmount;
-            fillAmount = Mathf.Lerp(fillAmount, 1 - levelManager.Progress, damping);
-            fillAmount = Mathf.Clamp(fillAmount, startingFillAmount, 1);
-
-            sliderForeground.fillAmount = fillAmount;
+            var value = levelManager.Progress;
+            value = Mathf.Clamp(value, startingValue, 1);
+            
+            progressor.SetValue(value);
+            //
+            // var fillAmount = sliderForeground.fillAmount;
+            // fillAmount = Mathf.Lerp(fillAmount, 1 - levelManager.Progress, damping);
+            // fillAmount = Mathf.Clamp(fillAmount, startingValue, 1);
+            //
+            // sliderForeground.fillAmount = fillAmount;
         }
     }
 }

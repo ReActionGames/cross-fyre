@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: _ThemesDatabase
   m_EditorClassIdentifier: 
   ThemesNames:
+  - Cross Fyre
   - General
   Themes:
+  - {fileID: 11400000, guid: cc51133ba48329246b079de315a356ea, type: 2}
   - {fileID: 11400000, guid: b8fe0e83876974d4b9335576dd86fbc3, type: 2}
