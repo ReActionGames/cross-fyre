@@ -1,0 +1,17 @@
+{
+    "name": "DoozyEditorAssembly",
+    "references": [
+        "GUID:fc8b59c1602e77a4da0bc135ccb9a463",
+        "GUID:b6af38f92725e7b418ec2b10ec570982",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
